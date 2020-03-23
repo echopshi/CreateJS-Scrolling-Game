@@ -12,9 +12,28 @@ let Game = (function() {
 
   let assetManifest = [
     { id: "placeholder", src: "./Assets/images/placeholder.png" },
-    { id: "startButton", src: "./Assets/images/start-button.png" },
-    { id: "reStartButton", src: "./Assets/images/restart-button.png" },
-    { id: "quitButton", src: "./Assets/images/close-Button.png" }
+    { id: "universe", src: "./Assets/images/background.png" },
+    // Logos
+    {
+      id: "spaceshipFreedomLogo",
+      src: "./Assets/images/spaceshipFreedomLogo.png"
+    },
+    { id: "instructionLogo", src: "./Assets/images/instructionLogo.png" },
+    { id: "gameOverLogo", src: "./Assets/images/gameOverLogo.png" },
+    // buttons
+    { id: "playButton", src: "./Assets/images/playButton.png" },
+    { id: "playAgainButton", src: "./Assets/images/playAgainButton.png" },
+    { id: "exitButton", src: "./Assets/images/exitButton.png" },
+    { id: "exitToMenuButton", src: "./Assets/images/exitToMenuButton.png" },
+    { id: "instructionButton", src: "./Assets/images/instructionButton.png" },
+    // avatars
+    { id: "avatar", src: "./Assets/images/avatarB.png" },
+    { id: "bullet", src: "./Assets/images/bulletB.png" },
+    { id: "monsterA", src: "./Assets/images/monstorA.png" },
+    { id: "monsterB", src: "./Assets/images/monstorB.png" },
+    { id: "monsterC", src: "./Assets/images/monstorC.png" },
+    { id: "monsterD", src: "./Assets/images/monstorD.png" },
+    { id: "planet", src: "./Assets/images/planet.png" }
   ];
 
   function Preload(): void {

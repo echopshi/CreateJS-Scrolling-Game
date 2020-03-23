@@ -1,39 +1,25 @@
 module objects {
-  export class Button extends GameObject {
+  export class Image extends GameObject {
     // constructor
     constructor(
       imagePath: Object = config.Game.ASSETS.getResult("button"),
       x: number = 0,
       y: number = 0,
+      width: number = 0,
+      height: number = 0,
       isCentered: boolean = false
     ) {
       super(imagePath, x, y, isCentered);
-
-      this.on("mouseover", this.MouseOver);
-      this.on("mouseout", this.MouseOut);
-
+      super.CustomSize(width, height, isCentered);
       this.Start();
     }
 
-    // PRIVATE METHODS
+    // PRIVATE LIFE CYCLE METHODS
     protected _checkBounds(): void {}
 
-    // PUBLIC METHODS
-    MouseOver(): void {
-      this.alpha = 0.7;
-    }
-
-    MouseOut(): void {
-      this.alpha = 1.0;
-    }
-
-    /**
-     * This function is used for initialization
-     *
-     * @memberof Button
-     */
+    // PUBLIC LIFE CYCLE METHODS
     public Start(): void {
-      this.name = "Button";
+      this.name = "Image";
     }
 
     public Update(): void {}

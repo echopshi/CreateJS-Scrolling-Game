@@ -26,17 +26,37 @@ var scenes;
         // PRIVATE METHODS
         // PUBLIC METHODS
         Start.prototype.Start = function () {
-            //instantiate a new Text object
-            this._welcomeLabel = new objects.Label("Metal Recycle", "80px", "Consolas", "#FFFF00", 320, 180, true);
+            // Images
+            this._titleImage = new objects.Image(config.Game.ASSETS.getResult("spaceshipFreedomLogo"), 320, 220, 600, 100, true);
+            this._monsterAImage = new objects.Image(config.Game.ASSETS.getResult("monsterA"), 140, 100, 60, 75, true);
+            this._monsterBImage = new objects.Image(config.Game.ASSETS.getResult("monsterB"), 265, 100, 60, 75, true);
+            this._monsterCImage = new objects.Image(config.Game.ASSETS.getResult("monsterC"), 390, 100, 60, 75, true);
+            this._monsterDImage = new objects.Image(config.Game.ASSETS.getResult("monsterD"), 515, 100, 60, 75, true);
+            this._avatarImage = new objects.Image(config.Game.ASSETS.getResult("avatar"), 265, 300, 60, 75, true);
+            this._planetImage = new objects.Image(config.Game.ASSETS.getResult("planet"), 390, 300, 60, 75, true);
             // buttons
-            this._startButton = new objects.Button(config.Game.ASSETS.getResult("startButton"), 320, 430, true);
+            this._playButton = new objects.Button(config.Game.ASSETS.getResult("playButton"), 140, 420, true);
+            this._instructionButton = new objects.Button(config.Game.ASSETS.getResult("instructionButton"), 320, 425, true);
+            this._exitButton = new objects.Button(config.Game.ASSETS.getResult("exitButton"), 500, 420, true);
+            this._universe = new objects.Universe();
             this.Main();
         };
-        Start.prototype.Update = function () { };
+        Start.prototype.Update = function () {
+            this._universe.Update();
+        };
         Start.prototype.Main = function () {
-            this.addChild(this._welcomeLabel);
-            this.addChild(this._startButton);
-            this._startButton.on("click", function () {
+            this.addChild(this._universe);
+            this.addChild(this._monsterAImage);
+            this.addChild(this._monsterBImage);
+            this.addChild(this._monsterCImage);
+            this.addChild(this._monsterDImage);
+            this.addChild(this._titleImage);
+            this.addChild(this._avatarImage);
+            this.addChild(this._planetImage);
+            this.addChild(this._playButton);
+            this.addChild(this._instructionButton);
+            this.addChild(this._exitButton);
+            this._playButton.on("click", function () {
                 config.Game.SCENE = scenes.State.PLAY;
             });
         };

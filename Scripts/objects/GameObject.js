@@ -42,7 +42,7 @@ var objects;
             if (fourth) {
                 _this.isCentered = fourth;
             }
-            if ((typeof second == "number") && (typeof third == "number")) {
+            if (typeof second == "number" && typeof third == "number") {
                 _this.position = new objects.Vector2(second, third, _this);
             }
             if (second instanceof objects.Vector2) {
@@ -142,6 +142,20 @@ var objects;
         GameObject.prototype._centerGameObject = function () {
             this.regX = this.halfWidth;
             this.regY = this.halfHeight;
+        };
+        GameObject.prototype.CustomSize = function (width, height, isCentered) {
+            var _this = this;
+            if (width === void 0) { width = this.getBounds().width; }
+            if (height === void 0) { height = this.getBounds().height; }
+            if (isCentered === void 0) { isCentered = false; }
+            this.image.addEventListener("load", function () {
+                _this.scaleX = width / _this.getBounds().width;
+                _this.scaleY = height / _this.getBounds().height;
+                _this.isCentered = isCentered;
+                if (_this.isCentered) {
+                    _this._centerGameObject();
+                }
+            });
         };
         return GameObject;
     }(createjs.Bitmap));

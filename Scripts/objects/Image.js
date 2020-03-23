@@ -14,41 +14,31 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Button = /** @class */ (function (_super) {
-        __extends(Button, _super);
+    var Image = /** @class */ (function (_super) {
+        __extends(Image, _super);
         // constructor
-        function Button(imagePath, x, y, isCentered) {
+        function Image(imagePath, x, y, width, height, isCentered) {
             if (imagePath === void 0) { imagePath = config.Game.ASSETS.getResult("button"); }
             if (x === void 0) { x = 0; }
             if (y === void 0) { y = 0; }
+            if (width === void 0) { width = 0; }
+            if (height === void 0) { height = 0; }
             if (isCentered === void 0) { isCentered = false; }
             var _this = _super.call(this, imagePath, x, y, isCentered) || this;
-            _this.on("mouseover", _this.MouseOver);
-            _this.on("mouseout", _this.MouseOut);
+            _super.prototype.CustomSize.call(_this, width, height, isCentered);
             _this.Start();
             return _this;
         }
-        // PRIVATE METHODS
-        Button.prototype._checkBounds = function () { };
-        // PUBLIC METHODS
-        Button.prototype.MouseOver = function () {
-            this.alpha = 0.7;
+        // PRIVATE LIFE CYCLE METHODS
+        Image.prototype._checkBounds = function () { };
+        // PUBLIC LIFE CYCLE METHODS
+        Image.prototype.Start = function () {
+            this.name = "Image";
         };
-        Button.prototype.MouseOut = function () {
-            this.alpha = 1.0;
-        };
-        /**
-         * This function is used for initialization
-         *
-         * @memberof Button
-         */
-        Button.prototype.Start = function () {
-            this.name = "Button";
-        };
-        Button.prototype.Update = function () { };
-        Button.prototype.Reset = function () { };
-        return Button;
+        Image.prototype.Update = function () { };
+        Image.prototype.Reset = function () { };
+        return Image;
     }(objects.GameObject));
-    objects.Button = Button;
+    objects.Image = Image;
 })(objects || (objects = {}));
-//# sourceMappingURL=Button.js.map
+//# sourceMappingURL=Image.js.map
