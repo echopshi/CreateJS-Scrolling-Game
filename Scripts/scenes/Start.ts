@@ -122,8 +122,16 @@ module scenes {
       this.addChild(this._instructionButton);
       this.addChild(this._exitButton);
 
+      this._instructionButton.on("click", () => {
+        config.Game.SCENE = scenes.State.INSTRUCTION;
+      });
+
       this._playButton.on("click", () => {
         config.Game.SCENE = scenes.State.PLAY;
+      });
+
+      this._exitButton.on("click", () => {
+        config.Game.SCENE = scenes.State.END;
       });
     }
   }
