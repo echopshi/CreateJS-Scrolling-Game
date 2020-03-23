@@ -19,7 +19,7 @@ module scenes {
     public Start(): void {
       //instantiate a new Text object
       this._welcomeLabel = new objects.Label(
-        "The Game",
+        "Metal Recycle",
         "80px",
         "Consolas",
         "#FFFF00",
