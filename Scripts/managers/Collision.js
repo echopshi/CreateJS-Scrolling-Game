@@ -7,9 +7,41 @@ var managers;
         Collision.squaredRadiusCheck = function (object1, object2) {
             // squared radius check
             var radii = object1.halfHeight + object2.halfHeight;
-            if (objects.Vector2.sqrDistance(object1.position, object2.position) < (radii * radii)) {
+            if (objects.Vector2.sqrDistance(object1.position, object2.position) <
+                radii * radii) {
                 if (!object2.isColliding) {
-                    console.log("Collision!");
+                    switch (object2.name) {
+                        case "MonsterA":
+                            {
+                                console.log("Collision with monsterA!");
+                            }
+                            break;
+                        case "MonsterB":
+                            {
+                                console.log("Collision with monsterB!");
+                            }
+                            break;
+                        case "MonsterC":
+                            {
+                                console.log("Collision with monsterC!");
+                            }
+                            break;
+                        case "MonsterD":
+                            {
+                                console.log("Collision with monsterD!");
+                            }
+                            break;
+                        case "bullet":
+                            {
+                                console.log("Collision between monster and bullet!");
+                            }
+                            break;
+                        case "planet":
+                            {
+                                console.log("Collision with planet!");
+                            }
+                            break;
+                    }
                     object2.isColliding = true;
                     return true;
                 }
@@ -20,8 +52,12 @@ var managers;
             return false;
         };
         Collision.AABBCheck = function (object1, object2) {
-            var object1Offset = (!object1.isCentered) ? new objects.Vector2(0, 0) : new objects.Vector2(object1.halfWidth, object1.halfHeight);
-            var object2Offset = (!object2.isCentered) ? new objects.Vector2(0, 0) : new objects.Vector2(object2.halfWidth, object2.halfHeight);
+            var object1Offset = !object1.isCentered
+                ? new objects.Vector2(0, 0)
+                : new objects.Vector2(object1.halfWidth, object1.halfHeight);
+            var object2Offset = !object2.isCentered
+                ? new objects.Vector2(0, 0)
+                : new objects.Vector2(object2.halfWidth, object2.halfHeight);
             var object1TopLeft = new objects.Vector2(object1.position.x - object1Offset.x, object1.position.y - object1Offset.y);
             var object2TopLeft = new objects.Vector2(object2.position.x - object2Offset.x, object2.position.y - object2Offset.y);
             // AABB Collision Detection

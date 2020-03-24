@@ -48,23 +48,14 @@ var scenes;
             this._planet.Update();
             // movement of the spaceship
             this._spaceship.Update();
-            // shooting even for the spaceship
+            // collision detection for spaceship and planet
+            managers.Collision.squaredRadiusCheck(this._spaceship, this._planet);
+            // shooting event for the spaceship
             this.fireBullet();
             // update each monster in the list
-            for (var index = 0; index < this._monsterNum; index++) {
-                var monster = this._monsters[index];
-                monster.Update();
-                // check if the monster escaped or not
-                if (monster.escape) {
-                    // if monster escaped, remove from scene and then create an new one
-                    this.removeChild(monster);
-                    this._monsters[index] = new objects.Monster();
-                    this.addChild(this._monsters[index]);
-                }
-            }
-            this._bullets.forEach(function (bullet) {
-                bullet.Update();
-            });
+            this.updateMonsters();
+            // update each bullet in the list
+            this.updateBullets();
         };
         Play.prototype.Main = function () {
             var _this = this;
@@ -86,6 +77,37 @@ var scenes;
                 this._bullets.push(bullet);
                 config.Game.CURREN_BULLET_TICKER = createjs.Ticker.getTicks();
             }
+        };
+        Play.prototype.updateMonsters = function () {
+            for (var index = 0; index < this._monsterNum; index++) {
+                var monster = this._monsters[index];
+                // update monster movements
+                monster.Update();
+                // collision detection
+                managers.Collision.squaredRadiusCheck(this._spaceship, monster);
+                // check if the monster escaped or not
+                if (monster.escape) {
+                    // if monster escaped, remove from scene and then create an new one
+                    this.removeChild(monster);
+                    this._monsters[index] = new objects.Monster();
+                    this.addChild(this._monsters[index]);
+                }
+            }
+        };
+        Play.prototype.updateBullets = function () {
+            var _this = this;
+            this._bullets.forEach(function (bullet) {
+                bullet.Update();
+                // collision detection
+                for (var index = 0; index < _this._monsterNum; index++) {
+                    if (managers.Collision.squaredRadiusCheck(_this._monsters[index], bullet)) {
+                        _this.removeChild(bullet);
+                        _this.removeChild(_this._monsters[index]);
+                        _this._monsters[index] = new objects.Monster();
+                        _this.addChild(_this._monsters[index]);
+                    }
+                }
+            });
         };
         return Play;
     }(objects.Scene));

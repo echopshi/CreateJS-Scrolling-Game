@@ -55,25 +55,17 @@ module scenes {
       // movement of the spaceship
       this._spaceship.Update();
 
-      // shooting even for the spaceship
+      // collision detection for spaceship and planet
+      managers.Collision.squaredRadiusCheck(this._spaceship, this._planet);
+
+      // shooting event for the spaceship
       this.fireBullet();
 
       // update each monster in the list
-      for (let index = 0; index < this._monsterNum; index++) {
-        let monster = this._monsters[index];
-        monster.Update();
-        // check if the monster escaped or not
-        if (monster.escape) {
-          // if monster escaped, remove from scene and then create an new one
-          this.removeChild(monster);
-          this._monsters[index] = new objects.Monster();
-          this.addChild(this._monsters[index]);
-        }
-      }
+      this.updateMonsters();
 
-      this._bullets.forEach(bullet => {
-        bullet.Update();
-      });
+      // update each bullet in the list
+      this.updateBullets();
     }
 
     public Main(): void {
@@ -99,6 +91,40 @@ module scenes {
         this._bullets.push(bullet);
         config.Game.CURREN_BULLET_TICKER = createjs.Ticker.getTicks();
       }
+    }
+
+    public updateMonsters() {
+      for (let index = 0; index < this._monsterNum; index++) {
+        let monster = this._monsters[index];
+        // update monster movements
+        monster.Update();
+        // collision detection
+        managers.Collision.squaredRadiusCheck(this._spaceship, monster);
+        // check if the monster escaped or not
+        if (monster.escape) {
+          // if monster escaped, remove from scene and then create an new one
+          this.removeChild(monster);
+          this._monsters[index] = new objects.Monster();
+          this.addChild(this._monsters[index]);
+        }
+      }
+    }
+
+    public updateBullets() {
+      this._bullets.forEach(bullet => {
+        bullet.Update();
+        // collision detection
+        for (let index = 0; index < this._monsterNum; index++) {
+          if (
+            managers.Collision.squaredRadiusCheck(this._monsters[index], bullet)
+          ) {
+            this.removeChild(bullet);
+            this.removeChild(this._monsters[index]);
+            this._monsters[index] = new objects.Monster();
+            this.addChild(this._monsters[index]);
+          }
+        }
+      });
     }
   }
 }
