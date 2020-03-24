@@ -28,6 +28,7 @@ var scenes;
         //initialize and instatiate
         Play.prototype.Start = function () {
             this._universe = new objects.Universe();
+            this._spaceship = new objects.Spaceship();
             this._monsterNum = config.Game.MONSTER_NUM;
             this._monsters = new Array();
             // create an array of monster objects
@@ -39,6 +40,8 @@ var scenes;
         Play.prototype.Update = function () {
             // make scrolling universe background
             this._universe.Update();
+            // movement of the spaceship
+            this._spaceship.Update();
             // update each monster in the list
             for (var index = 0; index < this._monsterNum; index++) {
                 var monster = this._monsters[index];
@@ -56,6 +59,8 @@ var scenes;
             var _this = this;
             // add universe background
             this.addChild(this._universe);
+            // add player controlled spaceship
+            this.addChild(this._spaceship);
             // add the initial list of monsters
             this._monsters.forEach(function (monster) {
                 _this.addChild(monster);

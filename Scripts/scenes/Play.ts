@@ -2,6 +2,7 @@ module scenes {
   export class Play extends objects.Scene {
     // PRIVATE INSTANCE MEMBERS
     private _universe: objects.Universe;
+    private _spaceship: objects.Spaceship;
 
     private _monsterNum: number;
     private _monsters: objects.Monster[];
@@ -21,6 +22,7 @@ module scenes {
     //initialize and instatiate
     public Start(): void {
       this._universe = new objects.Universe();
+      this._spaceship = new objects.Spaceship();
 
       this._monsterNum = config.Game.MONSTER_NUM;
       this._monsters = new Array<objects.Monster>();
@@ -36,6 +38,9 @@ module scenes {
     public Update(): void {
       // make scrolling universe background
       this._universe.Update();
+
+      // movement of the spaceship
+      this._spaceship.Update();
 
       // update each monster in the list
       for (let index = 0; index < this._monsterNum; index++) {
@@ -54,6 +59,9 @@ module scenes {
     public Main(): void {
       // add universe background
       this.addChild(this._universe);
+
+      // add player controlled spaceship
+      this.addChild(this._spaceship);
 
       // add the initial list of monsters
       this._monsters.forEach(monster => {
