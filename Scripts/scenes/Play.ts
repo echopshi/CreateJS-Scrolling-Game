@@ -34,14 +34,28 @@ module scenes {
     }
 
     public Update(): void {
+      // make scrolling universe background
       this._universe.Update();
-      this._monsters.forEach(monster => {
+
+      // update each monster in the list
+      for (let index = 0; index < this._monsterNum; index++) {
+        let monster = this._monsters[index];
         monster.Update();
-      });
+        // check if the monster escaped or not
+        if (monster.escape) {
+          // if monster escaped, remove from scene and then create an new one
+          this.removeChild(monster);
+          this._monsters[index] = new objects.Monster();
+          this.addChild(this._monsters[index]);
+        }
+      }
     }
 
     public Main(): void {
+      // add universe background
       this.addChild(this._universe);
+
+      // add the initial list of monsters
       this._monsters.forEach(monster => {
         this.addChild(monster);
       });

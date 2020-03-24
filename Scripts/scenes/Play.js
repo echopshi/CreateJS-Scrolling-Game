@@ -37,14 +37,26 @@ var scenes;
             this.Main();
         };
         Play.prototype.Update = function () {
+            // make scrolling universe background
             this._universe.Update();
-            this._monsters.forEach(function (monster) {
+            // update each monster in the list
+            for (var index = 0; index < this._monsterNum; index++) {
+                var monster = this._monsters[index];
                 monster.Update();
-            });
+                // check if the monster escaped or not
+                if (monster.escape) {
+                    // if monster escaped, remove from scene and then create an new one
+                    this.removeChild(monster);
+                    this._monsters[index] = new objects.Monster();
+                    this.addChild(this._monsters[index]);
+                }
+            }
         };
         Play.prototype.Main = function () {
             var _this = this;
+            // add universe background
             this.addChild(this._universe);
+            // add the initial list of monsters
             this._monsters.forEach(function (monster) {
                 _this.addChild(monster);
             });

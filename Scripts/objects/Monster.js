@@ -16,10 +16,10 @@ var objects;
 (function (objects) {
     var Monster = /** @class */ (function (_super) {
         __extends(Monster, _super);
-        // PUBLIC PROPERTIES
         // CONSTRUCTOR
         function Monster() {
             var _this = this;
+            // random generate different monster
             var randomMonster = util.Mathf.RandomRange(1, 4);
             if (randomMonster < 2) {
                 _this = _super.call(this, config.Game.ASSETS.getResult("monsterA"), new objects.Vector2(), true) || this;
@@ -37,19 +37,30 @@ var objects;
                 _this = _super.call(this, config.Game.ASSETS.getResult("monsterD"), new objects.Vector2(), true) || this;
                 _this.name = "MonsterD";
             }
-            _this.position = new objects.Vector2(_this.width, _this.height);
+            // initial escape is false
+            _this._escape = false;
             _this.Start();
             return _this;
         }
+        Object.defineProperty(Monster.prototype, "escape", {
+            // PUBLIC PROPERTIES
+            get: function () {
+                return this._escape;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // PRIVATE METHODS
         Monster.prototype._checkBounds = function () {
+            // check vertical boundary
             if (this.position.y > config.Game.SCREEN_HEIGHT + this.height) {
-                this.Reset();
+                this._escape = true;
             }
             // check horizontal boundary
-            if (this.position.x < this.width ||
-                this.position.x > config.Game.SCREEN_WIDTH - this.width) {
-                this.velocity = new objects.Vector2(-this._horizontalSpeed, this._verticalSpeed);
+            if (this.position.x < this.halfWidth ||
+                this.position.x > config.Game.SCREEN_WIDTH - this.halfWidth) {
+                this._horizontalSpeed = -this._horizontalSpeed;
+                this.velocity = new objects.Vector2(this._horizontalSpeed, this._verticalSpeed);
             }
         };
         Monster.prototype._move = function () {
@@ -57,8 +68,7 @@ var objects;
         };
         // PUBLIC METHODS
         Monster.prototype.Start = function () {
-            this.name = "Monster";
-            this.alpha = 0.7; // transparency set to 70%
+            this.alpha = 0.8; // transparency set to 80%
             this.Reset();
         };
         Monster.prototype.Update = function () {
@@ -66,7 +76,7 @@ var objects;
             this._checkBounds();
         };
         Monster.prototype.Reset = function () {
-            this._verticalSpeed = util.Mathf.RandomRange(2, 5); // speed ranges from 2 to 5 px per frame
+            this._verticalSpeed = util.Mathf.RandomRange(2, 4); // speed ranges from 2 to 5 px per frame
             this._horizontalSpeed = util.Mathf.RandomRange(-1, 1); // random horizontal drift
             this.velocity = new objects.Vector2(this._horizontalSpeed, this._verticalSpeed);
             var randomX = util.Mathf.RandomRange(this.halfWidth, config.Game.SCREEN_WIDTH - this.halfWidth);

@@ -3,11 +3,16 @@ module objects {
     // PRIVATE INSTANCE
     private _verticalSpeed?: number;
     private _horizontalSpeed?: number;
+    private _escape?: boolean;
 
     // PUBLIC PROPERTIES
+    public get escape(): boolean {
+      return this._escape;
+    }
 
     // CONSTRUCTOR
     constructor() {
+      // random generate different monster
       let randomMonster = util.Mathf.RandomRange(1, 4);
       if (randomMonster < 2) {
         super(config.Game.ASSETS.getResult("monsterA"), new Vector2(), true);
@@ -23,24 +28,24 @@ module objects {
         this.name = "MonsterD";
       }
 
-      this.position = new Vector2(this.width, this.height);
+      // initial escape is false
+      this._escape = false;
       this.Start();
     }
 
     // PRIVATE METHODS
     protected _checkBounds(): void {
+      // check vertical boundary
       if (this.position.y > config.Game.SCREEN_HEIGHT + this.height) {
-        this.Reset();
+        this._escape = true;
       }
       // check horizontal boundary
       if (
-        this.position.x < this.width ||
-        this.position.x > config.Game.SCREEN_WIDTH - this.width
+        this.position.x < this.halfWidth ||
+        this.position.x > config.Game.SCREEN_WIDTH - this.halfWidth
       ) {
-        this.velocity = new Vector2(
-          -this._horizontalSpeed,
-          this._verticalSpeed
-        );
+        this._horizontalSpeed = -this._horizontalSpeed;
+        this.velocity = new Vector2(this._horizontalSpeed, this._verticalSpeed);
       }
     }
 
@@ -50,8 +55,7 @@ module objects {
 
     // PUBLIC METHODS
     public Start(): void {
-      this.name = "Monster";
-      this.alpha = 0.7; // transparency set to 70%
+      this.alpha = 0.8; // transparency set to 80%
       this.Reset();
     }
     public Update(): void {
@@ -59,7 +63,7 @@ module objects {
       this._checkBounds();
     }
     public Reset(): void {
-      this._verticalSpeed = util.Mathf.RandomRange(2, 5); // speed ranges from 2 to 5 px per frame
+      this._verticalSpeed = util.Mathf.RandomRange(2, 4); // speed ranges from 2 to 5 px per frame
       this._horizontalSpeed = util.Mathf.RandomRange(-1, 1); // random horizontal drift
       this.velocity = new Vector2(this._horizontalSpeed, this._verticalSpeed);
       let randomX = util.Mathf.RandomRange(
