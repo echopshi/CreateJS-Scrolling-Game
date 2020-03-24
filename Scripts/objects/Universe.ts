@@ -35,7 +35,7 @@ module objects {
     }
 
     public Reset(): void {
-      this.position = new Vector2(0, -700);
+      this.position = new Vector2(0, -1200);
     }
   }
 }

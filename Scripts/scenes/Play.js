@@ -27,15 +27,28 @@ var scenes;
         // PUBLIC METHODS
         //initialize and instatiate
         Play.prototype.Start = function () {
-            this._cloudNumber = config.Game.CLOUD_NUM;
-            // create an array of cloud objects
-            for (var index = 0; index < this._cloudNumber; index++) {
-                //this._clouds[index] = new objects.Cloud();
+            this._universe = new objects.Universe();
+            this._monsterNum = config.Game.MONSTER_NUM;
+            this._monsters = new Array();
+            // create an array of monster objects
+            for (var index = 0; index < this._monsterNum; index++) {
+                this._monsters[index] = new objects.Monster();
             }
             this.Main();
         };
-        Play.prototype.Update = function () { };
-        Play.prototype.Main = function () { };
+        Play.prototype.Update = function () {
+            this._universe.Update();
+            this._monsters.forEach(function (monster) {
+                monster.Update();
+            });
+        };
+        Play.prototype.Main = function () {
+            var _this = this;
+            this.addChild(this._universe);
+            this._monsters.forEach(function (monster) {
+                _this.addChild(monster);
+            });
+        };
         return Play;
     }(objects.Scene));
     scenes.Play = Play;

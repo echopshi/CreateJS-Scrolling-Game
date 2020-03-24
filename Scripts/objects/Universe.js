@@ -43,7 +43,7 @@ var objects;
             this._checkBounds();
         };
         Universe.prototype.Reset = function () {
-            this.position = new objects.Vector2(0, -700);
+            this.position = new objects.Vector2(0, -1200);
         };
         return Universe;
     }(objects.GameObject));
