@@ -27,8 +27,8 @@ let Game = (function() {
     { id: "exitToMenuButton", src: "./Assets/images/exitToMenuButton.png" },
     { id: "instructionButton", src: "./Assets/images/instructionButton.png" },
     // avatars
-    { id: "avatar", src: "./Assets/images/avatarB.png" },
-    { id: "bullet", src: "./Assets/images/bulletB.png" },
+    { id: "avatar", src: "./Assets/images/avatarA.png" },
+    { id: "bullet", src: "./Assets/images/bulletA.png" },
     { id: "monsterA", src: "./Assets/images/monstorA.png" },
     { id: "monsterB", src: "./Assets/images/monstorB.png" },
     { id: "monsterC", src: "./Assets/images/monstorC.png" },

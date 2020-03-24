@@ -5,9 +5,9 @@ var config;
         function Game() {
         }
         Game.SCREEN_WIDTH = 640;
-        Game.SCREEN_HEIGHT = 480;
+        Game.SCREEN_HEIGHT = 640;
         Game.FPS = 60; // 60 Frames per second
-        Game.CLOUD_NUM = 3;
+        Game.MONSTER_NUM = 4;
         return Game;
     }());
     config.Game = Game;
