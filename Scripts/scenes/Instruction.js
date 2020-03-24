@@ -27,18 +27,18 @@ var scenes;
         // PUBLIC METHODS
         Instruction.prototype.Start = function () {
             // Images
-            this._titleImage = new objects.Image(config.Game.ASSETS.getResult("spaceshipFreedomLogo"), 320, 80, 600, 100, true);
-            this._instructionImage = new objects.Image(config.Game.ASSETS.getResult("instructionLogo"), 150, 150, 60, 75, true);
+            this._titleImage = new objects.Image(config.Game.ASSETS.getResult("spaceshipFreedomLogo"), 320, 100, 600, 100, true);
+            this._instructionImage = new objects.Image(config.Game.ASSETS.getResult("instructionLogo"), 150, 200, 60, 75, true);
             // Label
             var instruction = "1. Bullet hits Monster, Score + 10\n\n" +
                 "2. Spaceship hits Monster, Live – 1\n\n" +
                 "3. Monster escape, Live – 1\n\n" +
                 "4. Spaceship interacts Planet, Bullet + 100\n\n" +
                 "5. Live = 0 or Bullet = 0, Game Over\n\n";
-            this._instructionLabel = new objects.Label(instruction, "24px", "Consolas", "#FFFFFF", 50, 180, false);
+            this._instructionLabel = new objects.Label(instruction, "24px", "Consolas", "#FFFFFF", 50, 250, false);
             // buttons
-            this._playButton = new objects.Button(config.Game.ASSETS.getResult("playButton"), 140, 420, true);
-            this._exitButton = new objects.Button(config.Game.ASSETS.getResult("exitToMenuButton"), 500, 420, true);
+            this._playButton = new objects.Button(config.Game.ASSETS.getResult("playButton"), 140, 580, true);
+            this._exitButton = new objects.Button(config.Game.ASSETS.getResult("exitToMenuButton"), 500, 580, true);
             this._universe = new objects.Universe();
             this.Main();
         };

@@ -32,12 +32,12 @@ var scenes;
             this._monsterBImage = new objects.Image(config.Game.ASSETS.getResult("monsterB"), 265, 100, 60, 75, true);
             this._monsterCImage = new objects.Image(config.Game.ASSETS.getResult("monsterC"), 390, 100, 60, 75, true);
             this._monsterDImage = new objects.Image(config.Game.ASSETS.getResult("monsterD"), 515, 100, 60, 75, true);
-            this._avatarImage = new objects.Image(config.Game.ASSETS.getResult("avatar"), 265, 300, 60, 75, true);
-            this._planetImage = new objects.Image(config.Game.ASSETS.getResult("planet"), 390, 300, 60, 75, true);
+            this._avatarImage = new objects.Image(config.Game.ASSETS.getResult("avatar"), 265, 400, 60, 75, true);
+            this._planetImage = new objects.Image(config.Game.ASSETS.getResult("planet"), 390, 400, 60, 75, true);
             // buttons
-            this._playButton = new objects.Button(config.Game.ASSETS.getResult("playButton"), 140, 420, true);
-            this._instructionButton = new objects.Button(config.Game.ASSETS.getResult("instructionButton"), 320, 425, true);
-            this._exitButton = new objects.Button(config.Game.ASSETS.getResult("exitButton"), 500, 420, true);
+            this._playButton = new objects.Button(config.Game.ASSETS.getResult("playButton"), 140, 560, true);
+            this._instructionButton = new objects.Button(config.Game.ASSETS.getResult("instructionButton"), 320, 565, true);
+            this._exitButton = new objects.Button(config.Game.ASSETS.getResult("exitButton"), 500, 560, true);
             this._universe = new objects.Universe();
             this.Main();
         };

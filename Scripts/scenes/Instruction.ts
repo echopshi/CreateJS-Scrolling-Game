@@ -24,7 +24,7 @@ module scenes {
       this._titleImage = new objects.Image(
         config.Game.ASSETS.getResult("spaceshipFreedomLogo"),
         320,
-        80,
+        100,
         600,
         100,
         true
@@ -32,7 +32,7 @@ module scenes {
       this._instructionImage = new objects.Image(
         config.Game.ASSETS.getResult("instructionLogo"),
         150,
-        150,
+        200,
         60,
         75,
         true
@@ -50,20 +50,20 @@ module scenes {
         "Consolas",
         "#FFFFFF",
         50,
-        180,
+        250,
         false
       );
       // buttons
       this._playButton = new objects.Button(
         config.Game.ASSETS.getResult("playButton"),
         140,
-        420,
+        580,
         true
       );
       this._exitButton = new objects.Button(
         config.Game.ASSETS.getResult("exitToMenuButton"),
         500,
-        420,
+        580,
         true
       );
       this._universe = new objects.Universe();

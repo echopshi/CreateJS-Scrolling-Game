@@ -69,7 +69,7 @@ module scenes {
       this._avatarImage = new objects.Image(
         config.Game.ASSETS.getResult("avatar"),
         265,
-        300,
+        400,
         60,
         75,
         true
@@ -77,7 +77,7 @@ module scenes {
       this._planetImage = new objects.Image(
         config.Game.ASSETS.getResult("planet"),
         390,
-        300,
+        400,
         60,
         75,
         true
@@ -86,19 +86,19 @@ module scenes {
       this._playButton = new objects.Button(
         config.Game.ASSETS.getResult("playButton"),
         140,
-        420,
+        560,
         true
       );
       this._instructionButton = new objects.Button(
         config.Game.ASSETS.getResult("instructionButton"),
         320,
-        425,
+        565,
         true
       );
       this._exitButton = new objects.Button(
         config.Game.ASSETS.getResult("exitButton"),
         500,
-        420,
+        560,
         true
       );
       this._universe = new objects.Universe();

@@ -28,17 +28,17 @@ var scenes;
         // Initializing and Instantiating
         End.prototype.Start = function () {
             // Image
-            this._gameOverImage = new objects.Image(config.Game.ASSETS.getResult("gameOverLogo"), 320, 150, 600, 100, true);
-            this._monsterAImage = new objects.Image(config.Game.ASSETS.getResult("monsterA"), 140, 50, 60, 75, true);
-            this._monsterBImage = new objects.Image(config.Game.ASSETS.getResult("monsterB"), 265, 50, 60, 75, true);
-            this._monsterCImage = new objects.Image(config.Game.ASSETS.getResult("monsterC"), 390, 50, 60, 75, true);
-            this._monsterDImage = new objects.Image(config.Game.ASSETS.getResult("monsterD"), 515, 50, 60, 75, true);
+            this._gameOverImage = new objects.Image(config.Game.ASSETS.getResult("gameOverLogo"), 320, 220, 600, 100, true);
+            this._monsterAImage = new objects.Image(config.Game.ASSETS.getResult("monsterA"), 140, 100, 60, 75, true);
+            this._monsterBImage = new objects.Image(config.Game.ASSETS.getResult("monsterB"), 265, 100, 60, 75, true);
+            this._monsterCImage = new objects.Image(config.Game.ASSETS.getResult("monsterC"), 390, 100, 60, 75, true);
+            this._monsterDImage = new objects.Image(config.Game.ASSETS.getResult("monsterD"), 515, 100, 60, 75, true);
             // labels
-            this._scoreLabel = new objects.Label("Current Score: 1999", "24px", "Consolas", "#FFFFFF", 320, 250, true);
-            this._highScoreLabel = new objects.Label("Highest Score: 9999", "24px", "Consolas", "#FFFFFF", 320, 300, true);
+            this._scoreLabel = new objects.Label("Current Score: 1999", "24px", "Consolas", "#FFFFFF", 320, 350, true);
+            this._highScoreLabel = new objects.Label("Highest Score: 9999", "24px", "Consolas", "#FFFFFF", 320, 400, true);
             // buttons
-            this._restartButton = new objects.Button(config.Game.ASSETS.getResult("playAgainButton"), 140, 420, true);
-            this._exitButton = new objects.Button(config.Game.ASSETS.getResult("exitToMenuButton"), 500, 420, true);
+            this._restartButton = new objects.Button(config.Game.ASSETS.getResult("playAgainButton"), 140, 560, true);
+            this._exitButton = new objects.Button(config.Game.ASSETS.getResult("exitToMenuButton"), 500, 560, true);
             this._universe = new objects.Universe();
             this.Main();
         };

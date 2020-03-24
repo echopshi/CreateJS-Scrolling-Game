@@ -30,7 +30,7 @@ module scenes {
       this._gameOverImage = new objects.Image(
         config.Game.ASSETS.getResult("gameOverLogo"),
         320,
-        150,
+        220,
         600,
         100,
         true
@@ -38,7 +38,7 @@ module scenes {
       this._monsterAImage = new objects.Image(
         config.Game.ASSETS.getResult("monsterA"),
         140,
-        50,
+        100,
         60,
         75,
         true
@@ -46,7 +46,7 @@ module scenes {
       this._monsterBImage = new objects.Image(
         config.Game.ASSETS.getResult("monsterB"),
         265,
-        50,
+        100,
         60,
         75,
         true
@@ -54,7 +54,7 @@ module scenes {
       this._monsterCImage = new objects.Image(
         config.Game.ASSETS.getResult("monsterC"),
         390,
-        50,
+        100,
         60,
         75,
         true
@@ -62,7 +62,7 @@ module scenes {
       this._monsterDImage = new objects.Image(
         config.Game.ASSETS.getResult("monsterD"),
         515,
-        50,
+        100,
         60,
         75,
         true
@@ -74,7 +74,7 @@ module scenes {
         "Consolas",
         "#FFFFFF",
         320,
-        250,
+        350,
         true
       );
       this._highScoreLabel = new objects.Label(
@@ -83,20 +83,20 @@ module scenes {
         "Consolas",
         "#FFFFFF",
         320,
-        300,
+        400,
         true
       );
       // buttons
       this._restartButton = new objects.Button(
         config.Game.ASSETS.getResult("playAgainButton"),
         140,
-        420,
+        560,
         true
       );
       this._exitButton = new objects.Button(
         config.Game.ASSETS.getResult("exitToMenuButton"),
         500,
-        420,
+        560,
         true
       );
       this._universe = new objects.Universe();
