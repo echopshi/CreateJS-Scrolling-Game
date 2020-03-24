@@ -4,8 +4,13 @@ module scenes {
     private _universe: objects.Universe;
     private _spaceship: objects.Spaceship;
 
+    private _currentTicker: number;
+
     private _monsterNum: number;
     private _monsters: objects.Monster[];
+
+    private _bulletNum: number;
+    private _bullets: objects.Bullet[];
 
     // PUBLIC PROPERTIES
 
@@ -27,10 +32,15 @@ module scenes {
       this._monsterNum = config.Game.MONSTER_NUM;
       this._monsters = new Array<objects.Monster>();
 
+      this._bullets = new Array<objects.Bullet>();
+
       // create an array of monster objects
       for (let index = 0; index < this._monsterNum; index++) {
         this._monsters[index] = new objects.Monster();
       }
+
+      // initialize current ticker
+      this._currentTicker = createjs.Ticker.getTicks();
 
       this.Main();
     }
@@ -41,6 +51,9 @@ module scenes {
 
       // movement of the spaceship
       this._spaceship.Update();
+
+      // shooting even for the spaceship
+      this.fireBullet();
 
       // update each monster in the list
       for (let index = 0; index < this._monsterNum; index++) {
@@ -54,6 +67,10 @@ module scenes {
           this.addChild(this._monsters[index]);
         }
       }
+
+      this._bullets.forEach(bullet => {
+        bullet.Update();
+      });
     }
 
     public Main(): void {
@@ -67,6 +84,15 @@ module scenes {
       this._monsters.forEach(monster => {
         this.addChild(monster);
       });
+    }
+
+    public fireBullet(): void {
+      if (this._currentTicker + 10 == createjs.Ticker.getTicks()) {
+        let bullet = this._spaceship.shoot(objects.Vector2.up());
+        this.addChild(bullet);
+        this._bullets.push(bullet);
+        this._currentTicker = createjs.Ticker.getTicks();
+      }
     }
   }
 }

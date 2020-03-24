@@ -48,5 +48,9 @@ module objects {
     }
 
     public Reset(): void {}
+
+    public shoot(aim: Vector2): objects.Bullet {
+      return new Bullet(this.position.x, this.position.y + 10, aim);
+    }
   }
 }

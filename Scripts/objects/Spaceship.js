@@ -48,6 +48,9 @@ var objects;
             this._checkBounds();
         };
         Spaceship.prototype.Reset = function () { };
+        Spaceship.prototype.shoot = function (aim) {
+            return new objects.Bullet(this.position.x, this.position.y + 10, aim);
+        };
         return Spaceship;
     }(objects.GameObject));
     objects.Spaceship = Spaceship;
