@@ -42,8 +42,8 @@ module scenes {
         "1. Bullet hits Monster, Score + 10\n\n" +
         "2. Spaceship hits Monster, Live – 1\n\n" +
         "3. Monster escape, Live – 1\n\n" +
-        "4. Spaceship interacts Planet, Bullet + 100\n\n" +
-        "5. Live = 0 or Bullet = 0, Game Over\n\n";
+        "4. Spaceship interacts Planet, Bullet + 50\n\n" +
+        "5. Live = 0 then Game Over\n\n";
       this._instructionLabel = new objects.Label(
         instruction,
         "24px",
@@ -83,6 +83,9 @@ module scenes {
       this.addChild(this._exitButton);
 
       this._playButton.on("click", () => {
+        config.Game.LIVES = 5;
+        config.Game.BULLETS = 99;
+        config.Game.SCORE = 0;
         config.Game.SCENE = scenes.State.PLAY;
       });
 

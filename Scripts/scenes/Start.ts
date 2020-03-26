@@ -127,6 +127,9 @@ module scenes {
       });
 
       this._playButton.on("click", () => {
+        config.Game.LIVES = 5;
+        config.Game.BULLETS = 99;
+        config.Game.SCORE = 0;
         config.Game.SCENE = scenes.State.PLAY;
       });
 

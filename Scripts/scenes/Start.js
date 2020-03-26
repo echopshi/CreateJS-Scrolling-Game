@@ -60,6 +60,9 @@ var scenes;
                 config.Game.SCENE = scenes.State.INSTRUCTION;
             });
             this._playButton.on("click", function () {
+                config.Game.LIVES = 5;
+                config.Game.BULLETS = 99;
+                config.Game.SCORE = 0;
                 config.Game.SCENE = scenes.State.PLAY;
             });
             this._exitButton.on("click", function () {

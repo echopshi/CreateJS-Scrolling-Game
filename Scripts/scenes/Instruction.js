@@ -33,8 +33,8 @@ var scenes;
             var instruction = "1. Bullet hits Monster, Score + 10\n\n" +
                 "2. Spaceship hits Monster, Live – 1\n\n" +
                 "3. Monster escape, Live – 1\n\n" +
-                "4. Spaceship interacts Planet, Bullet + 100\n\n" +
-                "5. Live = 0 or Bullet = 0, Game Over\n\n";
+                "4. Spaceship interacts Planet, Bullet + 50\n\n" +
+                "5. Live = 0 then Game Over\n\n";
             this._instructionLabel = new objects.Label(instruction, "24px", "Consolas", "#FFFFFF", 50, 250, false);
             // buttons
             this._playButton = new objects.Button(config.Game.ASSETS.getResult("playButton"), 140, 580, true);
@@ -53,6 +53,9 @@ var scenes;
             this.addChild(this._playButton);
             this.addChild(this._exitButton);
             this._playButton.on("click", function () {
+                config.Game.LIVES = 5;
+                config.Game.BULLETS = 99;
+                config.Game.SCORE = 0;
                 config.Game.SCENE = scenes.State.PLAY;
             });
             this._exitButton.on("click", function () {

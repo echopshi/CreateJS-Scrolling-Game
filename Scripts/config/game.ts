@@ -8,5 +8,10 @@ module config {
     public static MONSTER_NUM: number = 4;
     public static CURREN_BULLET_TICKER: number = 0;
     public static CURREN_PLANET_TICKER: number = 0;
+    public static LIVES: number = 5;
+    public static BULLETS: number = 99;
+    public static SCORE: number = 0;
+    public static HIGH_SCORE: number = 0;
+    public static SCORE_BOARD: managers.ScoreBoard;
   }
 }

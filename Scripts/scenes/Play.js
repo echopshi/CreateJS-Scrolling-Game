@@ -39,6 +39,9 @@ var scenes;
             }
             // initialize current ticker
             config.Game.CURREN_BULLET_TICKER = createjs.Ticker.getTicks();
+            // initial the score board
+            this._scoreBoard = new managers.ScoreBoard();
+            config.Game.SCORE_BOARD = this._scoreBoard;
             this.Main();
         };
         Play.prototype.Update = function () {
@@ -61,6 +64,10 @@ var scenes;
             var _this = this;
             // add universe background
             this.addChild(this._universe);
+            // add the score board labels
+            this.addChild(this._scoreBoard.LivesLabel);
+            this.addChild(this._scoreBoard.BulletsLabel);
+            this.addChild(this._scoreBoard.ScoreLabel);
             // add planet
             this.addChild(this._planet);
             // add player controlled spaceship
@@ -72,9 +79,12 @@ var scenes;
         };
         Play.prototype.fireBullet = function () {
             if (config.Game.CURREN_BULLET_TICKER + 10 == createjs.Ticker.getTicks()) {
-                var bullet = this._spaceship.shoot(objects.Vector2.up());
-                this.addChild(bullet);
-                this._bullets.push(bullet);
+                if (config.Game.SCORE_BOARD.Bullets > 0) {
+                    config.Game.SCORE_BOARD.Bullets -= 1;
+                    var bullet = this._spaceship.shoot(objects.Vector2.up());
+                    this.addChild(bullet);
+                    this._bullets.push(bullet);
+                }
                 config.Game.CURREN_BULLET_TICKER = createjs.Ticker.getTicks();
             }
         };
@@ -87,10 +97,16 @@ var scenes;
                 managers.Collision.squaredRadiusCheck(this._spaceship, monster);
                 // check if the monster escaped or not
                 if (monster.escape) {
-                    // if monster escaped, remove from scene and then create an new one
+                    // if monster escaped, detect lives
+                    config.Game.SCORE_BOARD.Lives -= 1;
+                    //remove from scene and then create an new one
                     this.removeChild(monster);
                     this._monsters[index] = new objects.Monster();
                     this.addChild(this._monsters[index]);
+                    // go to end scene if lives less zero
+                    if (config.Game.LIVES < 1) {
+                        config.Game.SCENE = scenes.State.END;
+                    }
                 }
             }
         };

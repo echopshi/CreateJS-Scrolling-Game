@@ -2,7 +2,6 @@ module scenes {
   export class End extends objects.Scene {
     // PRIVATE INSTANCE MEMBERS
     private _scoreLabel: objects.Label;
-    private _highScoreLabel: objects.Label;
     private _restartButton: objects.Button;
     private _exitButton: objects.Button;
     private _universe: objects.Universe;
@@ -11,6 +10,8 @@ module scenes {
     private _monsterBImage: objects.Image;
     private _monsterCImage: objects.Image;
     private _monsterDImage: objects.Image;
+
+    private _scoreBoard: managers.ScoreBoard;
 
     // PUBLIC PROPERTIES
 
@@ -26,6 +27,8 @@ module scenes {
 
     // Initializing and Instantiating
     public Start(): void {
+      this._universe = new objects.Universe();
+      this._scoreBoard = new managers.ScoreBoard();
       // Image
       this._gameOverImage = new objects.Image(
         config.Game.ASSETS.getResult("gameOverLogo"),
@@ -69,21 +72,12 @@ module scenes {
       );
       // labels
       this._scoreLabel = new objects.Label(
-        "Current Score: 1999",
+        "Current Score: " + config.Game.SCORE,
         "24px",
         "Consolas",
         "#FFFFFF",
         320,
         350,
-        true
-      );
-      this._highScoreLabel = new objects.Label(
-        "Highest Score: 9999",
-        "24px",
-        "Consolas",
-        "#FFFFFF",
-        320,
-        400,
         true
       );
       // buttons
@@ -99,7 +93,6 @@ module scenes {
         560,
         true
       );
-      this._universe = new objects.Universe();
 
       this.Main();
     }
@@ -118,12 +111,15 @@ module scenes {
       this.addChild(this._gameOverImage);
       // add labels to scene
       this.addChild(this._scoreLabel);
-      this.addChild(this._highScoreLabel);
+      this.addChild(this._scoreBoard.HighScoreLabel);
       // add buttons to scene
       this.addChild(this._restartButton);
       this.addChild(this._exitButton);
 
       this._restartButton.on("click", () => {
+        config.Game.LIVES = 5;
+        config.Game.BULLETS = 99;
+        config.Game.SCORE = 0;
         config.Game.SCENE = scenes.State.PLAY;
       });
 

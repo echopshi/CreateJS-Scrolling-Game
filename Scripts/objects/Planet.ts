@@ -16,7 +16,7 @@ module objects {
       if (this.position.y > config.Game.SCREEN_HEIGHT + this.height) {
         this.velocity = new Vector2();
         if (
-          config.Game.CURREN_PLANET_TICKER + 1000 ==
+          config.Game.CURREN_PLANET_TICKER + 500 ==
           createjs.Ticker.getTicks()
         ) {
           this.Reset();

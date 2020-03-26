@@ -27,7 +27,7 @@ var objects;
         Planet.prototype._checkBounds = function () {
             if (this.position.y > config.Game.SCREEN_HEIGHT + this.height) {
                 this.velocity = new objects.Vector2();
-                if (config.Game.CURREN_PLANET_TICKER + 1000 ==
+                if (config.Game.CURREN_PLANET_TICKER + 500 ==
                     createjs.Ticker.getTicks()) {
                     this.Reset();
                     config.Game.CURREN_PLANET_TICKER = createjs.Ticker.getTicks();

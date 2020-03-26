@@ -27,6 +27,8 @@ var scenes;
         // PUBLIC METHODS
         // Initializing and Instantiating
         End.prototype.Start = function () {
+            this._universe = new objects.Universe();
+            this._scoreBoard = new managers.ScoreBoard();
             // Image
             this._gameOverImage = new objects.Image(config.Game.ASSETS.getResult("gameOverLogo"), 320, 220, 600, 100, true);
             this._monsterAImage = new objects.Image(config.Game.ASSETS.getResult("monsterA"), 140, 100, 60, 75, true);
@@ -34,12 +36,10 @@ var scenes;
             this._monsterCImage = new objects.Image(config.Game.ASSETS.getResult("monsterC"), 390, 100, 60, 75, true);
             this._monsterDImage = new objects.Image(config.Game.ASSETS.getResult("monsterD"), 515, 100, 60, 75, true);
             // labels
-            this._scoreLabel = new objects.Label("Current Score: 1999", "24px", "Consolas", "#FFFFFF", 320, 350, true);
-            this._highScoreLabel = new objects.Label("Highest Score: 9999", "24px", "Consolas", "#FFFFFF", 320, 400, true);
+            this._scoreLabel = new objects.Label("Current Score: " + config.Game.SCORE, "24px", "Consolas", "#FFFFFF", 320, 350, true);
             // buttons
             this._restartButton = new objects.Button(config.Game.ASSETS.getResult("playAgainButton"), 140, 560, true);
             this._exitButton = new objects.Button(config.Game.ASSETS.getResult("exitToMenuButton"), 500, 560, true);
-            this._universe = new objects.Universe();
             this.Main();
         };
         End.prototype.Update = function () {
@@ -55,11 +55,14 @@ var scenes;
             this.addChild(this._gameOverImage);
             // add labels to scene
             this.addChild(this._scoreLabel);
-            this.addChild(this._highScoreLabel);
+            this.addChild(this._scoreBoard.HighScoreLabel);
             // add buttons to scene
             this.addChild(this._restartButton);
             this.addChild(this._exitButton);
             this._restartButton.on("click", function () {
+                config.Game.LIVES = 5;
+                config.Game.BULLETS = 99;
+                config.Game.SCORE = 0;
                 config.Game.SCENE = scenes.State.PLAY;
             });
             this._exitButton.on("click", function () {

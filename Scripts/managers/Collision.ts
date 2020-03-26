@@ -16,33 +16,46 @@ module managers {
             case "MonsterA":
               {
                 console.log("Collision with monsterA!");
+                config.Game.SCORE_BOARD.Lives -= 1;
               }
               break;
             case "MonsterB":
               {
                 console.log("Collision with monsterB!");
+                config.Game.SCORE_BOARD.Lives -= 1;
               }
               break;
             case "MonsterC":
               {
                 console.log("Collision with monsterC!");
+                config.Game.SCORE_BOARD.Lives -= 1;
               }
               break;
             case "MonsterD":
               {
                 console.log("Collision with monsterD!");
+                config.Game.SCORE_BOARD.Lives -= 1;
               }
               break;
             case "bullet":
               {
                 console.log("Collision between monster and bullet!");
+                config.Game.SCORE_BOARD.Score += 10;
+                if (config.Game.SCORE > config.Game.HIGH_SCORE) {
+                  config.Game.HIGH_SCORE = config.Game.SCORE;
+                }
               }
               break;
             case "planet":
               {
                 console.log("Collision with planet!");
+                config.Game.SCORE_BOARD.Bullets += 50;
               }
               break;
+          }
+          // go to end scene if lives less zero
+          if (config.Game.LIVES < 1) {
+            config.Game.SCENE = scenes.State.END;
           }
           object2.isColliding = true;
           return true;
