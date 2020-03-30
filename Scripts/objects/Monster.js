@@ -23,22 +23,22 @@ var objects;
             var randomMonster = util.Mathf.RandomRange(1, 4);
             if (randomMonster < 2) {
                 _this = _super.call(this, config.Game.ASSETS.getResult("monsterA"), new objects.Vector2(), true) || this;
-                _this.name = "MonsterA";
+                _this.type = enums.GameObjectTypes.MONSTERA;
                 _this._lives = 1;
             }
             else if (randomMonster < 3) {
                 _this = _super.call(this, config.Game.ASSETS.getResult("monsterB"), new objects.Vector2(), true) || this;
-                _this.name = "MonsterB";
+                _this.type = enums.GameObjectTypes.MONSTERB;
                 _this._lives = 1;
             }
             else if (randomMonster < 4) {
                 _this = _super.call(this, config.Game.ASSETS.getResult("monsterC"), new objects.Vector2(), true) || this;
-                _this.name = "MonsterC";
+                _this.type = enums.GameObjectTypes.MONSTERC;
                 _this._lives = 2;
             }
             else {
                 _this = _super.call(this, config.Game.ASSETS.getResult("monsterD"), new objects.Vector2(), true) || this;
-                _this.name = "MonsterD";
+                _this.type = enums.GameObjectTypes.MONSTERD;
                 _this._lives = 2;
             }
             // initial escape is false

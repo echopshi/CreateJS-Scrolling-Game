@@ -8,8 +8,10 @@ var config;
         Game.SCREEN_HEIGHT = 640;
         Game.FPS = 60; // 60 Frames per second
         Game.MONSTER_NUM = 4;
-        Game.CURREN_BULLET_TICKER = 0;
-        Game.CURREN_PLANET_TICKER = 0;
+        Game.CURRENT_BULLET_TICKER = 0;
+        Game.CURRENT_PLANET_TICKER = 0;
+        Game.CURRENT_LIVEICON_TICKER = 0;
+        Game.CURRENT_STARICON_TICKER = 0;
         Game.LIVES = 5;
         Game.BULLETS = 99;
         Game.SCORE = 0;

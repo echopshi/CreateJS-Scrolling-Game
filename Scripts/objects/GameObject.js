@@ -132,6 +132,16 @@ var objects;
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(GameObject.prototype, "type", {
+            get: function () {
+                return this._type;
+            },
+            set: function (v) {
+                this._type = v;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // PRIVATE METHODS
         GameObject.prototype._computeHalfWidth = function () {
             return this.width * 0.5;

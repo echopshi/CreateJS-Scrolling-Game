@@ -38,7 +38,7 @@ var objects;
         };
         // PUBLIC METHODS
         Bullet.prototype.Start = function () {
-            this.name = "bullet";
+            this.type = enums.GameObjectTypes.BULLET;
             var speed = 10;
             this._direction.scale(speed);
             this.velocity = this._direction;

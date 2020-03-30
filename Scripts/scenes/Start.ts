@@ -12,6 +12,8 @@ module scenes {
     private _monsterDImage: objects.Image;
     private _avatarImage: objects.Image;
     private _planetImage: objects.Image;
+    private _liveImage: objects.Image;
+    private _starImage: objects.Image;
 
     // PUBLIC PROPERTIES
 
@@ -82,6 +84,22 @@ module scenes {
         75,
         true
       );
+      this._liveImage = new objects.Image(
+        config.Game.ASSETS.getResult("liveIcon"),
+        140,
+        400,
+        45,
+        45,
+        true
+      );
+      this._starImage = new objects.Image(
+        config.Game.ASSETS.getResult("starIcon"),
+        515,
+        400,
+        45,
+        45,
+        true
+      );
       // buttons
       this._playButton = new objects.Button(
         config.Game.ASSETS.getResult("playButton"),
@@ -116,8 +134,10 @@ module scenes {
       this.addChild(this._monsterCImage);
       this.addChild(this._monsterDImage);
       this.addChild(this._titleImage);
+      this.addChild(this._liveImage);
       this.addChild(this._avatarImage);
       this.addChild(this._planetImage);
+      this.addChild(this._starImage);
       this.addChild(this._playButton);
       this.addChild(this._instructionButton);
       this.addChild(this._exitButton);

@@ -38,7 +38,7 @@ var scenes;
                 this._monsters[index] = new objects.Monster();
             }
             // initialize current ticker
-            config.Game.CURREN_BULLET_TICKER = createjs.Ticker.getTicks();
+            config.Game.CURRENT_BULLET_TICKER = createjs.Ticker.getTicks();
             // initial the score board
             this._scoreBoard = new managers.ScoreBoard();
             config.Game.SCORE_BOARD = this._scoreBoard;
@@ -78,14 +78,15 @@ var scenes;
             });
         };
         Play.prototype.fireBullet = function () {
-            if (config.Game.CURREN_BULLET_TICKER + 10 == createjs.Ticker.getTicks()) {
+            if (config.Game.CURRENT_BULLET_TICKER + 10 ==
+                createjs.Ticker.getTicks()) {
                 if (config.Game.SCORE_BOARD.Bullets > 0) {
                     config.Game.SCORE_BOARD.Bullets -= 1;
                     var bullet = this._spaceship.shoot(objects.Vector2.up());
                     this.addChild(bullet);
                     this._bullets.push(bullet);
                 }
-                config.Game.CURREN_BULLET_TICKER = createjs.Ticker.getTicks();
+                config.Game.CURRENT_BULLET_TICKER = createjs.Ticker.getTicks();
             }
         };
         Play.prototype.updateMonsters = function () {

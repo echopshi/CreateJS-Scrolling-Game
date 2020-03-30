@@ -10,32 +10,32 @@ var managers;
             if (objects.Vector2.sqrDistance(object1.position, object2.position) <
                 radii * radii) {
                 if (!object2.isColliding) {
-                    switch (object2.name) {
-                        case "MonsterA":
+                    switch (object2.type) {
+                        case enums.GameObjectTypes.MONSTERA:
                             {
                                 console.log("Collision with monsterA!");
                                 config.Game.SCORE_BOARD.Lives -= 1;
                             }
                             break;
-                        case "MonsterB":
+                        case enums.GameObjectTypes.MONSTERB:
                             {
                                 console.log("Collision with monsterB!");
                                 config.Game.SCORE_BOARD.Lives -= 1;
                             }
                             break;
-                        case "MonsterC":
+                        case enums.GameObjectTypes.MONSTERC:
                             {
                                 console.log("Collision with monsterC!");
                                 config.Game.SCORE_BOARD.Lives -= 1;
                             }
                             break;
-                        case "MonsterD":
+                        case enums.GameObjectTypes.MONSTERD:
                             {
                                 console.log("Collision with monsterD!");
                                 config.Game.SCORE_BOARD.Lives -= 1;
                             }
                             break;
-                        case "bullet":
+                        case enums.GameObjectTypes.BULLET:
                             {
                                 console.log("Collision between monster and bullet!");
                                 config.Game.SCORE_BOARD.Score += 10;
@@ -44,7 +44,7 @@ var managers;
                                 }
                             }
                             break;
-                        case "planet":
+                        case enums.GameObjectTypes.PLANET:
                             {
                                 console.log("Collision with planet!");
                                 config.Game.SCORE_BOARD.Bullets += 50;

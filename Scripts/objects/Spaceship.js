@@ -40,7 +40,7 @@ var objects;
         };
         // PUBLIC METHODS
         Spaceship.prototype.Start = function () {
-            this.name = "spaceship";
+            this.type = enums.GameObjectTypes.SPACESHIP;
             this._verticalPosition = 610; // locked to the bottom of the screen
         };
         Spaceship.prototype.Update = function () {

@@ -9,6 +9,7 @@ module objects {
     private _velocity: Vector2;
     private _isColliding: boolean;
     private _isCentered: boolean;
+    private _type: enums.GameObjectTypes;
 
     // PUBLIC PROPERTIES
     get width(): number {
@@ -72,6 +73,13 @@ module objects {
       if (newState) {
         this._centerGameObject();
       }
+    }
+
+    public get type(): enums.GameObjectTypes {
+      return this._type;
+    }
+    public set type(v: enums.GameObjectTypes) {
+      this._type = v;
     }
 
     // CONSTRUCTOR

@@ -33,7 +33,9 @@ let Game = (function() {
     { id: "monsterB", src: "./Assets/images/monstorB.png" },
     { id: "monsterC", src: "./Assets/images/monstorC.png" },
     { id: "monsterD", src: "./Assets/images/monstorD.png" },
-    { id: "planet", src: "./Assets/images/planet.png" }
+    { id: "planet", src: "./Assets/images/planet.png" },
+    { id: "liveIcon", src: "./Assets/images/liveIcon.png" },
+    { id: "starIcon", src: "./Assets/images/starIcon.png" }
   ];
 
   function Preload(): void {

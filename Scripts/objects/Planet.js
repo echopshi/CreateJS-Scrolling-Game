@@ -27,10 +27,10 @@ var objects;
         Planet.prototype._checkBounds = function () {
             if (this.position.y > config.Game.SCREEN_HEIGHT + this.height) {
                 this.velocity = new objects.Vector2();
-                if (config.Game.CURREN_PLANET_TICKER + 500 ==
+                if (config.Game.CURRENT_PLANET_TICKER + 500 ==
                     createjs.Ticker.getTicks()) {
                     this.Reset();
-                    config.Game.CURREN_PLANET_TICKER = createjs.Ticker.getTicks();
+                    config.Game.CURRENT_PLANET_TICKER = createjs.Ticker.getTicks();
                 }
             }
         };
@@ -39,8 +39,8 @@ var objects;
         };
         // PUBLIC METHODS
         Planet.prototype.Start = function () {
-            this.name = "planet";
-            config.Game.CURREN_PLANET_TICKER = createjs.Ticker.getTicks();
+            this.type = enums.GameObjectTypes.PLANET;
+            config.Game.CURRENT_PLANET_TICKER = createjs.Ticker.getTicks();
             this._verticalSpeed = 5;
             this.velocity = new objects.Vector2(0, this._verticalSpeed);
             this.Reset();

@@ -34,6 +34,7 @@ var objects;
         };
         // PUBLIC METHODS
         Universe.prototype.Start = function () {
+            this.type = enums.GameObjectTypes.UNIVERSE;
             this._verticalSpeed = 5;
             this.velocity = new objects.Vector2(0, this._verticalSpeed);
             this.Reset();

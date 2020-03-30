@@ -24,19 +24,19 @@ module objects {
       let randomMonster = util.Mathf.RandomRange(1, 4);
       if (randomMonster < 2) {
         super(config.Game.ASSETS.getResult("monsterA"), new Vector2(), true);
-        this.name = "MonsterA";
+        this.type = enums.GameObjectTypes.MONSTERA;
         this._lives = 1;
       } else if (randomMonster < 3) {
         super(config.Game.ASSETS.getResult("monsterB"), new Vector2(), true);
-        this.name = "MonsterB";
+        this.type = enums.GameObjectTypes.MONSTERB;
         this._lives = 1;
       } else if (randomMonster < 4) {
         super(config.Game.ASSETS.getResult("monsterC"), new Vector2(), true);
-        this.name = "MonsterC";
+        this.type = enums.GameObjectTypes.MONSTERC;
         this._lives = 2;
       } else {
         super(config.Game.ASSETS.getResult("monsterD"), new Vector2(), true);
-        this.name = "MonsterD";
+        this.type = enums.GameObjectTypes.MONSTERD;
         this._lives = 2;
       }
 

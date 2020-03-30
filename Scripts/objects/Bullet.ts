@@ -31,7 +31,7 @@ module objects {
 
     // PUBLIC METHODS
     public Start(): void {
-      this.name = "bullet";
+      this.type = enums.GameObjectTypes.BULLET;
       let speed = 10;
       this._direction.scale(speed);
       this.velocity = this._direction;

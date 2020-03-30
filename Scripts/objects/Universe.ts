@@ -24,6 +24,7 @@ module objects {
 
     // PUBLIC METHODS
     public Start(): void {
+      this.type = enums.GameObjectTypes.UNIVERSE;
       this._verticalSpeed = 5;
       this.velocity = new Vector2(0, this._verticalSpeed);
       this.Reset();
