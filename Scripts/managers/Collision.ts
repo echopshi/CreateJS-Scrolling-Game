@@ -50,6 +50,21 @@ module managers {
               {
                 console.log("Collision with planet!");
                 config.Game.SCORE_BOARD.Bullets += 50;
+                config.Game.PLANET_ICON.Collected();
+              }
+              break;
+            case enums.GameObjectTypes.LIVEICON:
+              {
+                console.log("Collision with live icon!");
+                config.Game.SCORE_BOARD.Lives += 1;
+                config.Game.LIVE_ICON.Collected();
+              }
+              break;
+            case enums.GameObjectTypes.STARICON:
+              {
+                console.log("Collision with star icon!");
+                config.Game.SCORE_BOARD.Score += 20;
+                config.Game.STAR_ICON.Collected();
               }
               break;
           }

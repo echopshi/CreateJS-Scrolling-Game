@@ -15,5 +15,8 @@ module config {
     public static SCORE: number = 0;
     public static HIGH_SCORE: number = 0;
     public static SCORE_BOARD: managers.ScoreBoard;
+    public static PLANET_ICON: objects.Icon;
+    public static LIVE_ICON: objects.Icon;
+    public static STAR_ICON: objects.Icon;
   }
 }

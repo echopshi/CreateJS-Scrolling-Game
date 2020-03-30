@@ -3,7 +3,9 @@ module scenes {
     // PRIVATE INSTANCE MEMBERS
     private _universe: objects.Universe;
     private _spaceship: objects.Spaceship;
-    private _planet: objects.Planet;
+    private _planet: objects.Icon;
+    private _liveIcon: objects.Icon;
+    private _starIcon: objects.Icon;
 
     private _monsterNum: number;
     private _monsters: objects.Monster[];
@@ -27,7 +29,12 @@ module scenes {
     public Start(): void {
       this._universe = new objects.Universe();
       this._spaceship = new objects.Spaceship();
-      this._planet = new objects.Planet();
+      this._planet = new objects.Icon(enums.GameObjectTypes.PLANET);
+      config.Game.PLANET_ICON = this._planet;
+      this._liveIcon = new objects.Icon(enums.GameObjectTypes.LIVEICON);
+      config.Game.LIVE_ICON = this._liveIcon;
+      this._starIcon = new objects.Icon(enums.GameObjectTypes.STARICON);
+      config.Game.STAR_ICON = this._starIcon;
 
       this._monsterNum = config.Game.MONSTER_NUM;
       this._monsters = new Array<objects.Monster>();
@@ -53,14 +60,18 @@ module scenes {
       // make scrolling universe background
       this._universe.Update();
 
-      // movement of the plant
+      // movement of the plant, live, and star icons
       this._planet.Update();
+      this._liveIcon.Update();
+      this._starIcon.Update();
 
       // movement of the spaceship
       this._spaceship.Update();
 
       // collision detection for spaceship and planet
       managers.Collision.squaredRadiusCheck(this._spaceship, this._planet);
+      managers.Collision.squaredRadiusCheck(this._spaceship, this._liveIcon);
+      managers.Collision.squaredRadiusCheck(this._spaceship, this._starIcon);
 
       // shooting event for the spaceship
       this.fireBullet();
@@ -81,8 +92,14 @@ module scenes {
       this.addChild(this._scoreBoard.BulletsLabel);
       this.addChild(this._scoreBoard.ScoreLabel);
 
-      // add planet
+      // add planet, live, and star icons
       this.addChild(this._planet);
+      this.addChild(this._liveIcon);
+      this.addChild(this._starIcon);
+
+      // hide live and star icon for first time
+      this._liveIcon.Collected();
+      this._starIcon.Collected();
 
       // add player controlled spaceship
       this.addChild(this._spaceship);
