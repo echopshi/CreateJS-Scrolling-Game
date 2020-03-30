@@ -47,7 +47,9 @@ var objects;
             this._move();
             this._checkBounds();
         };
-        Bullet.prototype.Reset = function () { };
+        Bullet.prototype.Reset = function () {
+            this.position = new objects.Vector2(-1000, -1000);
+        };
         return Bullet;
     }(objects.GameObject));
     objects.Bullet = Bullet;

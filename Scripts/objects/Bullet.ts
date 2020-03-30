@@ -36,10 +36,14 @@ module objects {
       this._direction.scale(speed);
       this.velocity = this._direction;
     }
+
     public Update(): void {
       this._move();
       this._checkBounds();
     }
-    public Reset(): void {}
+
+    public Reset(): void {
+      this.position = new Vector2(-1000, -1000);
+    }
   }
 }

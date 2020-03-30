@@ -1,11 +1,19 @@
 module objects {
   export class Monster extends GameObject {
     // PRIVATE INSTANCE
-    private _verticalSpeed?: number;
-    private _horizontalSpeed?: number;
-    private _escape?: boolean;
+    private _verticalSpeed: number;
+    private _horizontalSpeed: number;
+    private _lives: number;
+    private _escape: boolean;
 
     // PUBLIC PROPERTIES
+    public set lives(v: number) {
+      this._lives = v;
+    }
+    public get lives(): number {
+      return this._lives;
+    }
+
     public get escape(): boolean {
       return this._escape;
     }
@@ -17,15 +25,19 @@ module objects {
       if (randomMonster < 2) {
         super(config.Game.ASSETS.getResult("monsterA"), new Vector2(), true);
         this.name = "MonsterA";
+        this._lives = 1;
       } else if (randomMonster < 3) {
         super(config.Game.ASSETS.getResult("monsterB"), new Vector2(), true);
         this.name = "MonsterB";
+        this._lives = 1;
       } else if (randomMonster < 4) {
         super(config.Game.ASSETS.getResult("monsterC"), new Vector2(), true);
         this.name = "MonsterC";
+        this._lives = 2;
       } else {
         super(config.Game.ASSETS.getResult("monsterD"), new Vector2(), true);
         this.name = "MonsterD";
+        this._lives = 2;
       }
 
       // initial escape is false

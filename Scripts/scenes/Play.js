@@ -118,9 +118,13 @@ var scenes;
                 for (var index = 0; index < _this._monsterNum; index++) {
                     if (managers.Collision.squaredRadiusCheck(_this._monsters[index], bullet)) {
                         _this.removeChild(bullet);
-                        _this.removeChild(_this._monsters[index]);
-                        _this._monsters[index] = new objects.Monster();
-                        _this.addChild(_this._monsters[index]);
+                        bullet.Reset();
+                        _this._monsters[index].lives -= 1;
+                        if (_this._monsters[index].lives < 1) {
+                            _this.removeChild(_this._monsters[index]);
+                            _this._monsters[index] = new objects.Monster();
+                            _this.addChild(_this._monsters[index]);
+                        }
                     }
                 }
             });

@@ -137,9 +137,13 @@ module scenes {
             managers.Collision.squaredRadiusCheck(this._monsters[index], bullet)
           ) {
             this.removeChild(bullet);
-            this.removeChild(this._monsters[index]);
-            this._monsters[index] = new objects.Monster();
-            this.addChild(this._monsters[index]);
+            bullet.Reset();
+            this._monsters[index].lives -= 1;
+            if (this._monsters[index].lives < 1) {
+              this.removeChild(this._monsters[index]);
+              this._monsters[index] = new objects.Monster();
+              this.addChild(this._monsters[index]);
+            }
           }
         }
       });

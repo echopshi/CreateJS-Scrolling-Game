@@ -24,26 +24,40 @@ var objects;
             if (randomMonster < 2) {
                 _this = _super.call(this, config.Game.ASSETS.getResult("monsterA"), new objects.Vector2(), true) || this;
                 _this.name = "MonsterA";
+                _this._lives = 1;
             }
             else if (randomMonster < 3) {
                 _this = _super.call(this, config.Game.ASSETS.getResult("monsterB"), new objects.Vector2(), true) || this;
                 _this.name = "MonsterB";
+                _this._lives = 1;
             }
             else if (randomMonster < 4) {
                 _this = _super.call(this, config.Game.ASSETS.getResult("monsterC"), new objects.Vector2(), true) || this;
                 _this.name = "MonsterC";
+                _this._lives = 2;
             }
             else {
                 _this = _super.call(this, config.Game.ASSETS.getResult("monsterD"), new objects.Vector2(), true) || this;
                 _this.name = "MonsterD";
+                _this._lives = 2;
             }
             // initial escape is false
             _this._escape = false;
             _this.Start();
             return _this;
         }
-        Object.defineProperty(Monster.prototype, "escape", {
+        Object.defineProperty(Monster.prototype, "lives", {
+            get: function () {
+                return this._lives;
+            },
             // PUBLIC PROPERTIES
+            set: function (v) {
+                this._lives = v;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Monster.prototype, "escape", {
             get: function () {
                 return this._escape;
             },
