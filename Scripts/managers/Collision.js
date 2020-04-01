@@ -1,4 +1,12 @@
 "use strict";
+/**
+ * Author: Hang Li
+ * Student Number: 300993981
+ * File Name: Collision.ts
+ * Modified on: April 01, 2020
+ * Game App Description: CreateJS Slot Machine
+ * Revision History: available in GitHub
+ */
 var managers;
 (function (managers) {
     var Collision = /** @class */ (function () {

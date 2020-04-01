@@ -1,3 +1,11 @@
+/**
+ * Author: Hang Li
+ * Student Number: 300993981
+ * File Name: Endless.ts
+ * Modified on: April 01, 2020
+ * Game App Description: CreateJS Slot Machine
+ * Revision History: available in GitHub
+ */
 module scenes {
   export class Endless extends objects.Scene {
     // PRIVATE INSTANCE MEMBERS
@@ -149,7 +157,9 @@ module scenes {
 
     public updateBullets() {
       this._bullets.forEach(bullet => {
+        // if bullet is active, then update and check collision
         if (bullet.Active) {
+          // bullet movements
           bullet.Update();
           // collision detection
           for (let index = 0; index < this._monsterNum; index++) {
@@ -159,12 +169,19 @@ module scenes {
                 bullet
               )
             ) {
+              // remove this bullet from stage
               this.removeChild(bullet);
+              // set bullet out of canvas and inActive
               bullet.Reset();
+              // delete monster's live
               this._monsters[index].lives -= 1;
+              // if monster is dead
               if (this._monsters[index].lives < 1) {
+                // remove monster from stage
                 this.removeChild(this._monsters[index]);
+                // create new monster
                 this._monsters[index] = new objects.Monster();
+                // add new monster back to stage
                 this.addChild(this._monsters[index]);
               }
             }

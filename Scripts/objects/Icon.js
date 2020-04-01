@@ -12,6 +12,14 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+/**
+ * Author: Hang Li
+ * Student Number: 300993981
+ * File Name: Icon.ts
+ * Modified on: April 01, 2020
+ * Game App Description: CreateJS Slot Machine
+ * Revision History: available in GitHub
+ */
 var objects;
 (function (objects) {
     var Icon = /** @class */ (function (_super) {

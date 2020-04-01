@@ -12,6 +12,14 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+/**
+ * Author: Hang Li
+ * Student Number: 300993981
+ * File Name: Endless.ts
+ * Modified on: April 01, 2020
+ * Game App Description: CreateJS Slot Machine
+ * Revision History: available in GitHub
+ */
 var scenes;
 (function (scenes) {
     var Endless = /** @class */ (function (_super) {
@@ -121,17 +129,26 @@ var scenes;
         Endless.prototype.updateBullets = function () {
             var _this = this;
             this._bullets.forEach(function (bullet) {
+                // if bullet is active, then update and check collision
                 if (bullet.Active) {
+                    // bullet movements
                     bullet.Update();
                     // collision detection
                     for (var index = 0; index < _this._monsterNum; index++) {
                         if (managers.Collision.squaredRadiusCheck(_this._monsters[index], bullet)) {
+                            // remove this bullet from stage
                             _this.removeChild(bullet);
+                            // set bullet out of canvas and inActive
                             bullet.Reset();
+                            // delete monster's live
                             _this._monsters[index].lives -= 1;
+                            // if monster is dead
                             if (_this._monsters[index].lives < 1) {
+                                // remove monster from stage
                                 _this.removeChild(_this._monsters[index]);
+                                // create new monster
                                 _this._monsters[index] = new objects.Monster();
+                                // add new monster back to stage
                                 _this.addChild(_this._monsters[index]);
                             }
                         }

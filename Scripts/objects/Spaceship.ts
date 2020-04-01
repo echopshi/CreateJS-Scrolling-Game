@@ -1,3 +1,11 @@
+/**
+ * Author: Hang Li
+ * Student Number: 300993981
+ * File Name: Spaceship.ts
+ * Modified on: April 01, 2020
+ * Game App Description: CreateJS Slot Machine
+ * Revision History: available in GitHub
+ */
 module objects {
   export class Spaceship extends GameObject {
     // PRIVATE INSTANCE MEMBERS
