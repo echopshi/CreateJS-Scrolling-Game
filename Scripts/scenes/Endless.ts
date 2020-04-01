@@ -123,7 +123,12 @@ module scenes {
         // update monster movements
         monster.Update();
         // collision detection
-        managers.Collision.squaredRadiusCheck(this._spaceship, monster);
+        if (managers.Collision.squaredRadiusCheck(this._spaceship, monster)) {
+          //remove from scene and then create an new one
+          this.removeChild(monster);
+          this._monsters[index] = new objects.Monster();
+          this.addChild(this._monsters[index]);
+        }
         // check if the monster escaped or not
         if (monster.escape) {
           let lostLiveSound = createjs.Sound.play("lostLivesSound");

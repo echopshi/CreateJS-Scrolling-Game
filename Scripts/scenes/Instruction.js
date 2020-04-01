@@ -28,21 +28,22 @@ var scenes;
         Instruction.prototype.Start = function () {
             // Images
             this._titleImage = new objects.Image(config.Game.ASSETS.getResult("spaceshipFreedomLogo"), 320, 100, 600, 100, true);
-            this._instructionImage = new objects.Image(config.Game.ASSETS.getResult("instructionLogo"), 150, 200, 60, 75, true);
-            this._iconsImage = new objects.Image(config.Game.ASSETS.getResult("iconsImage"), 305, 420, 30, 30, true);
+            this._instructionImage = new objects.Image(config.Game.ASSETS.getResult("instructionLogo"), 150, 180, 60, 75, true);
+            this._iconsImage = new objects.Image(config.Game.ASSETS.getResult("iconsImage"), 305, 400, 30, 30, true);
             // Label
             var instruction = "1. Bullet hits Monster, Score + 10\n\n" +
-                "2. Some Monsters need 2 Bullets to destory\n\n" +
+                "2. Some Monsters are stronger than others\n\n" +
                 "3. Spaceship hits Monster, Live – 1\n\n" +
                 "4. Monster escaped, Live – 1\n\n" +
                 "5. Spaceship grab    , Live + 1\n\n" +
                 "6. Spaceship grab    , Score + 50\n\n" +
                 "7. Spaceship grab    , Bullet + 50\n\n" +
-                "8. Live = 0 then Game Over\n\n";
-            this._instructionLabel = new objects.Label(instruction, "24px", "Consolas", "#FFFFFF", 50, 250, false);
+                "8. Endless level with infinity bullets\n\n" +
+                "9. Live = 0 then Game Over\n\n";
+            this._instructionLabel = new objects.Label(instruction, "24px", "Consolas", "#FFFFFF", 50, 230, false);
             // buttons
-            this._playButton = new objects.Button(config.Game.ASSETS.getResult("playButton"), 140, 580, true);
-            this._exitButton = new objects.Button(config.Game.ASSETS.getResult("exitToMenuButton"), 500, 580, true);
+            this._playButton = new objects.Button(config.Game.ASSETS.getResult("playButton"), 140, 590, true);
+            this._exitButton = new objects.Button(config.Game.ASSETS.getResult("exitToMenuButton"), 500, 590, true);
             this._universe = new objects.Universe();
             this.Main();
         };

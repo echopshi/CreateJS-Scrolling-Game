@@ -33,7 +33,7 @@ module scenes {
       this._instructionImage = new objects.Image(
         config.Game.ASSETS.getResult("instructionLogo"),
         150,
-        200,
+        180,
         60,
         75,
         true
@@ -41,7 +41,7 @@ module scenes {
       this._iconsImage = new objects.Image(
         config.Game.ASSETS.getResult("iconsImage"),
         305,
-        420,
+        400,
         30,
         30,
         true
@@ -49,33 +49,34 @@ module scenes {
       // Label
       let instruction =
         "1. Bullet hits Monster, Score + 10\n\n" +
-        "2. Some Monsters need 2 Bullets to destory\n\n" +
+        "2. Some Monsters are stronger than others\n\n" +
         "3. Spaceship hits Monster, Live – 1\n\n" +
         "4. Monster escaped, Live – 1\n\n" +
         "5. Spaceship grab    , Live + 1\n\n" +
         "6. Spaceship grab    , Score + 50\n\n" +
         "7. Spaceship grab    , Bullet + 50\n\n" +
-        "8. Live = 0 then Game Over\n\n";
+        "8. Endless level with infinity bullets\n\n" +
+        "9. Live = 0 then Game Over\n\n";
       this._instructionLabel = new objects.Label(
         instruction,
         "24px",
         "Consolas",
         "#FFFFFF",
         50,
-        250,
+        230,
         false
       );
       // buttons
       this._playButton = new objects.Button(
         config.Game.ASSETS.getResult("playButton"),
         140,
-        580,
+        590,
         true
       );
       this._exitButton = new objects.Button(
         config.Game.ASSETS.getResult("exitToMenuButton"),
         500,
-        580,
+        590,
         true
       );
       this._universe = new objects.Universe();
