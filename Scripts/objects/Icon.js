@@ -45,17 +45,17 @@ var objects;
                     this.Reset();
                     config.Game.CURRENT_PLANET_TICKER = createjs.Ticker.getTicks();
                 }
-                if (this.type == enums.GameObjectTypes.LIVEICON &&
-                    config.Game.CURRENT_LIVEICON_TICKER + 1200 ==
-                        createjs.Ticker.getTicks()) {
-                    this.Reset();
-                    config.Game.CURRENT_LIVEICON_TICKER = createjs.Ticker.getTicks();
-                }
                 if (this.type == enums.GameObjectTypes.STARICON &&
-                    config.Game.CURRENT_STARICON_TICKER + 800 ==
+                    config.Game.CURRENT_STARICON_TICKER + 700 ==
                         createjs.Ticker.getTicks()) {
                     this.Reset();
                     config.Game.CURRENT_STARICON_TICKER = createjs.Ticker.getTicks();
+                }
+                if (this.type == enums.GameObjectTypes.LIVEICON &&
+                    config.Game.CURRENT_LIVEICON_TICKER + 1300 ==
+                        createjs.Ticker.getTicks()) {
+                    this.Reset();
+                    config.Game.CURRENT_LIVEICON_TICKER = createjs.Ticker.getTicks();
                 }
             }
         };

@@ -34,6 +34,7 @@ var Game = (function () {
         { id: "planet", src: "./Assets/images/planet.png" },
         { id: "liveIcon", src: "./Assets/images/liveIcon.png" },
         { id: "starIcon", src: "./Assets/images/starIcon.png" },
+        { id: "iconsImage", src: "./Assets/images/iconsImages.png" },
         // sounds
         { id: "backgroundSound", src: "./Assets/audio/background.mp3" },
         { id: "bulletFireSound", src: "./Assets/audio/bulletFire.wav" },

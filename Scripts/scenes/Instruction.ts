@@ -7,6 +7,7 @@ module scenes {
     private _titleImage: objects.Image;
     private _instructionImage: objects.Image;
     private _instructionLabel: objects.Label;
+    private _iconsImage: objects.Image;
 
     // PUBLIC PROPERTIES
 
@@ -37,15 +38,23 @@ module scenes {
         75,
         true
       );
+      this._iconsImage = new objects.Image(
+        config.Game.ASSETS.getResult("iconsImage"),
+        305,
+        420,
+        30,
+        30,
+        true
+      );
       // Label
       let instruction =
         "1. Bullet hits Monster, Score + 10\n\n" +
-        "2. Some Monsters need 2 Bullet to destory\n\n" +
+        "2. Some Monsters need 2 Bullets to destory\n\n" +
         "3. Spaceship hits Monster, Live – 1\n\n" +
         "4. Monster escaped, Live – 1\n\n" +
-        "5. Spaceship grab heart, Live + 1\n\n" +
-        "6. Spaceship grab Star, Score + 50\n\n" +
-        "7. Spaceship grab Planet, Bullet + 50\n\n" +
+        "5. Spaceship grab    , Live + 1\n\n" +
+        "6. Spaceship grab    , Score + 50\n\n" +
+        "7. Spaceship grab    , Bullet + 50\n\n" +
         "8. Live = 0 then Game Over\n\n";
       this._instructionLabel = new objects.Label(
         instruction,
@@ -81,6 +90,7 @@ module scenes {
       this.addChild(this._universe);
       this.addChild(this._titleImage);
       this.addChild(this._instructionImage);
+      this.addChild(this._iconsImage);
       this.addChild(this._instructionLabel);
       this.addChild(this._playButton);
       this.addChild(this._exitButton);

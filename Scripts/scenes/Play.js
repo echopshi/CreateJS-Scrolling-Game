@@ -48,9 +48,10 @@ var scenes;
             // initial the score board
             this._scoreBoard = new managers.ScoreBoard();
             config.Game.SCORE_BOARD = this._scoreBoard;
+            // add background sound
             this._backgroundSound = createjs.Sound.play("backgroundSound");
             this._backgroundSound.loop = -1;
-            this._backgroundSound.volume = 0.1;
+            this._backgroundSound.volume = 0.2;
             this.Main();
         };
         Play.prototype.Update = function () {
