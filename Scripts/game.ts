@@ -24,6 +24,7 @@ let Game = (function() {
     { id: "playButton", src: "./Assets/images/playButton.png" },
     { id: "playAgainButton", src: "./Assets/images/playAgainButton.png" },
     { id: "exitButton", src: "./Assets/images/exitButton.png" },
+    { id: "playEndlessButton", src: "./Assets/images/playEndlessButton.png" },
     { id: "exitToMenuButton", src: "./Assets/images/exitToMenuButton.png" },
     { id: "instructionButton", src: "./Assets/images/instructionButton.png" },
     // avatars
@@ -112,6 +113,10 @@ let Game = (function() {
       case scenes.State.PLAY:
         console.log("switch to Play Scene");
         currentScene = new scenes.Play();
+        break;
+      case scenes.State.ENDLESS:
+        console.log("switch to Endless Scene");
+        currentScene = new scenes.Endless();
         break;
       case scenes.State.END:
         console.log("switch to End Scene");

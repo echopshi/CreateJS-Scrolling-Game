@@ -3,7 +3,9 @@ module scenes {
     // PRIVATE INSTANCE MEMBERS
     private _scoreLabel: objects.Label;
     private _restartButton: objects.Button;
+    private _playEndlessButton: objects.Button;
     private _exitButton: objects.Button;
+
     private _universe: objects.Universe;
     private _gameOverImage: objects.Image;
     private _monsterAImage: objects.Image;
@@ -87,6 +89,12 @@ module scenes {
         560,
         true
       );
+      this._playEndlessButton = new objects.Button(
+        config.Game.ASSETS.getResult("playEndlessButton"),
+        320,
+        560,
+        true
+      );
       this._exitButton = new objects.Button(
         config.Game.ASSETS.getResult("exitToMenuButton"),
         500,
@@ -114,6 +122,7 @@ module scenes {
       this.addChild(this._scoreBoard.HighScoreLabel);
       // add buttons to scene
       this.addChild(this._restartButton);
+      this.addChild(this._playEndlessButton);
       this.addChild(this._exitButton);
 
       this._restartButton.on("click", () => {
@@ -121,6 +130,13 @@ module scenes {
         config.Game.BULLETS = 99;
         config.Game.SCORE = 0;
         config.Game.SCENE = scenes.State.PLAY;
+      });
+
+      this._playEndlessButton.on("click", () => {
+        config.Game.LIVES = 5;
+        config.Game.BULLETS = 99;
+        config.Game.SCORE = 0;
+        config.Game.SCENE = scenes.State.ENDLESS;
       });
 
       this._exitButton.on("click", () => {

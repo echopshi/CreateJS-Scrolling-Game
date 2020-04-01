@@ -14,11 +14,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
-    var Play = /** @class */ (function (_super) {
-        __extends(Play, _super);
+    var Endless = /** @class */ (function (_super) {
+        __extends(Endless, _super);
         // PUBLIC PROPERTIES
         // CONSTRUCTOR
-        function Play() {
+        function Endless() {
             var _this = _super.call(this) || this;
             _this.Start();
             return _this;
@@ -26,16 +26,10 @@ var scenes;
         // PRIVATE METHODS
         // PUBLIC METHODS
         //initialize and instatiate
-        Play.prototype.Start = function () {
+        Endless.prototype.Start = function () {
             // initilize the game objects
             this._universe = new objects.Universe();
             this._spaceship = new objects.Spaceship();
-            this._planet = new objects.Icon(enums.GameObjectTypes.PLANET);
-            config.Game.PLANET_ICON = this._planet;
-            this._liveIcon = new objects.Icon(enums.GameObjectTypes.LIVEICON);
-            config.Game.LIVE_ICON = this._liveIcon;
-            this._starIcon = new objects.Icon(enums.GameObjectTypes.STARICON);
-            config.Game.STAR_ICON = this._starIcon;
             this._monsterNum = config.Game.MONSTER_NUM;
             this._monsters = new Array();
             this._bullets = new Array();
@@ -48,25 +42,18 @@ var scenes;
             // initial the score board
             this._scoreBoard = new managers.ScoreBoard();
             config.Game.SCORE_BOARD = this._scoreBoard;
+            this._bulletLabel = new objects.Label("Bullets: INFINITY", "20px", "Consolas", "#FFFF00", 300, 20, true);
             // add background sound
             this._backgroundSound = createjs.Sound.play("backgroundSound");
             this._backgroundSound.loop = -1;
             this._backgroundSound.volume = 0.2;
             this.Main();
         };
-        Play.prototype.Update = function () {
+        Endless.prototype.Update = function () {
             // make scrolling universe background
             this._universe.Update();
-            // movement of the plant, live, and star icons
-            this._planet.Update();
-            this._liveIcon.Update();
-            this._starIcon.Update();
             // movement of the spaceship
             this._spaceship.Update();
-            // collision detection for spaceship and planet
-            managers.Collision.squaredRadiusCheck(this._spaceship, this._planet);
-            managers.Collision.squaredRadiusCheck(this._spaceship, this._liveIcon);
-            managers.Collision.squaredRadiusCheck(this._spaceship, this._starIcon);
             // shooting event for the spaceship
             this.fireBullet();
             // update each monster in the list
@@ -74,21 +61,14 @@ var scenes;
             // update each bullet in the list
             this.updateBullets();
         };
-        Play.prototype.Main = function () {
+        Endless.prototype.Main = function () {
             var _this = this;
             // add universe background
             this.addChild(this._universe);
             // add the score board labels
             this.addChild(this._scoreBoard.LivesLabel);
-            this.addChild(this._scoreBoard.BulletsLabel);
+            this.addChild(this._bulletLabel);
             this.addChild(this._scoreBoard.ScoreLabel);
-            // add planet, live, and star icons
-            this.addChild(this._planet);
-            this.addChild(this._liveIcon);
-            this.addChild(this._starIcon);
-            // hide live and star icon for first time
-            this._liveIcon.Collected();
-            this._starIcon.Collected();
             // add player controlled spaceship
             this.addChild(this._spaceship);
             // add the initial list of monsters
@@ -96,23 +76,20 @@ var scenes;
                 _this.addChild(monster);
             });
         };
-        Play.prototype.Clean = function () {
+        Endless.prototype.Clean = function () {
             this._backgroundSound.stop();
             this.removeAllChildren();
         };
-        Play.prototype.fireBullet = function () {
+        Endless.prototype.fireBullet = function () {
             if (config.Game.CURRENT_BULLET_TICKER + 10 ==
                 createjs.Ticker.getTicks()) {
-                if (config.Game.SCORE_BOARD.Bullets > 0) {
-                    config.Game.SCORE_BOARD.Bullets -= 1;
-                    var bullet = this._spaceship.shoot(objects.Vector2.up());
-                    this.addChild(bullet);
-                    this._bullets.push(bullet);
-                }
+                var bullet = this._spaceship.shoot(objects.Vector2.up());
+                this.addChild(bullet);
+                this._bullets.push(bullet);
                 config.Game.CURRENT_BULLET_TICKER = createjs.Ticker.getTicks();
             }
         };
-        Play.prototype.updateMonsters = function () {
+        Endless.prototype.updateMonsters = function () {
             for (var index = 0; index < this._monsterNum; index++) {
                 var monster = this._monsters[index];
                 // update monster movements
@@ -136,7 +113,7 @@ var scenes;
                 }
             }
         };
-        Play.prototype.updateBullets = function () {
+        Endless.prototype.updateBullets = function () {
             var _this = this;
             this._bullets.forEach(function (bullet) {
                 if (bullet.Active) {
@@ -157,8 +134,8 @@ var scenes;
                 }
             });
         };
-        return Play;
+        return Endless;
     }(objects.Scene));
-    scenes.Play = Play;
+    scenes.Endless = Endless;
 })(scenes || (scenes = {}));
-//# sourceMappingURL=Play.js.map
+//# sourceMappingURL=Endless.js.map

@@ -5,6 +5,7 @@ module scenes {
     INSTRUCTION,
     PLAY,
     END,
+    ENDLESS,
     NUM_OF_SCENES
   }
 }

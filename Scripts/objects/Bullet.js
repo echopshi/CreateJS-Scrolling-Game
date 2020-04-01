@@ -16,14 +16,22 @@ var objects;
 (function (objects) {
     var Bullet = /** @class */ (function (_super) {
         __extends(Bullet, _super);
-        // PUBLIC PROPERTIES
         // CONSTRUCTOR
         function Bullet(x, y, direction) {
             var _this = _super.call(this, config.Game.ASSETS.getResult("bullet"), x, y, true) || this;
             _this._direction = direction;
+            _this._active = true;
             _this.Start();
             return _this;
         }
+        Object.defineProperty(Bullet.prototype, "Active", {
+            // PUBLIC PROPERTIES
+            get: function () {
+                return this._active;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // PRIVATE METHODS
         Bullet.prototype._checkBounds = function () {
             // check horizontal boundary
@@ -49,6 +57,7 @@ var objects;
         };
         Bullet.prototype.Reset = function () {
             this.position = new objects.Vector2(-1000, -1000);
+            this._active = false;
         };
         return Bullet;
     }(objects.GameObject));

@@ -2,14 +2,18 @@ module objects {
   export class Bullet extends GameObject {
     // PRIVATE INSTANCE
     private _direction: Vector2;
+    private _active: boolean;
 
     // PUBLIC PROPERTIES
+    public get Active(): boolean {
+      return this._active;
+    }
 
     // CONSTRUCTOR
     constructor(x: number, y: number, direction: Vector2) {
       super(config.Game.ASSETS.getResult("bullet"), x, y, true);
       this._direction = direction;
-
+      this._active = true;
       this.Start();
     }
 
@@ -44,6 +48,7 @@ module objects {
 
     public Reset(): void {
       this.position = new Vector2(-1000, -1000);
+      this._active = false;
     }
   }
 }

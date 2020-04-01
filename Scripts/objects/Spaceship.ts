@@ -51,7 +51,7 @@ module objects {
 
     public shoot(aim: Vector2): objects.Bullet {
       let bulletFireSound = createjs.Sound.play("bulletFireSound");
-      bulletFireSound.volume = 0.2;
+      bulletFireSound.volume = 0.15;
       return new Bullet(this.position.x, this.position.y - 40, aim);
     }
   }

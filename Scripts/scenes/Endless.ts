@@ -1,17 +1,14 @@
 module scenes {
-  export class Play extends objects.Scene {
+  export class Endless extends objects.Scene {
     // PRIVATE INSTANCE MEMBERS
     private _universe: objects.Universe;
     private _spaceship: objects.Spaceship;
-    private _planet: objects.Icon;
-    private _liveIcon: objects.Icon;
-    private _starIcon: objects.Icon;
-
     private _monsterNum: number;
     private _monsters: objects.Monster[];
     private _bullets: objects.Bullet[];
 
     private _scoreBoard: managers.ScoreBoard;
+    private _bulletLabel: objects.Label;
 
     private _backgroundSound: createjs.AbstractSoundInstance;
 
@@ -32,12 +29,6 @@ module scenes {
       // initilize the game objects
       this._universe = new objects.Universe();
       this._spaceship = new objects.Spaceship();
-      this._planet = new objects.Icon(enums.GameObjectTypes.PLANET);
-      config.Game.PLANET_ICON = this._planet;
-      this._liveIcon = new objects.Icon(enums.GameObjectTypes.LIVEICON);
-      config.Game.LIVE_ICON = this._liveIcon;
-      this._starIcon = new objects.Icon(enums.GameObjectTypes.STARICON);
-      config.Game.STAR_ICON = this._starIcon;
 
       this._monsterNum = config.Game.MONSTER_NUM;
       this._monsters = new Array<objects.Monster>();
@@ -56,6 +47,16 @@ module scenes {
       this._scoreBoard = new managers.ScoreBoard();
       config.Game.SCORE_BOARD = this._scoreBoard;
 
+      this._bulletLabel = new objects.Label(
+        "Bullets: INFINITY",
+        "20px",
+        "Consolas",
+        "#FFFF00",
+        300,
+        20,
+        true
+      );
+
       // add background sound
       this._backgroundSound = createjs.Sound.play("backgroundSound");
       this._backgroundSound.loop = -1;
@@ -68,18 +69,8 @@ module scenes {
       // make scrolling universe background
       this._universe.Update();
 
-      // movement of the plant, live, and star icons
-      this._planet.Update();
-      this._liveIcon.Update();
-      this._starIcon.Update();
-
       // movement of the spaceship
       this._spaceship.Update();
-
-      // collision detection for spaceship and planet
-      managers.Collision.squaredRadiusCheck(this._spaceship, this._planet);
-      managers.Collision.squaredRadiusCheck(this._spaceship, this._liveIcon);
-      managers.Collision.squaredRadiusCheck(this._spaceship, this._starIcon);
 
       // shooting event for the spaceship
       this.fireBullet();
@@ -97,17 +88,8 @@ module scenes {
 
       // add the score board labels
       this.addChild(this._scoreBoard.LivesLabel);
-      this.addChild(this._scoreBoard.BulletsLabel);
+      this.addChild(this._bulletLabel);
       this.addChild(this._scoreBoard.ScoreLabel);
-
-      // add planet, live, and star icons
-      this.addChild(this._planet);
-      this.addChild(this._liveIcon);
-      this.addChild(this._starIcon);
-
-      // hide live and star icon for first time
-      this._liveIcon.Collected();
-      this._starIcon.Collected();
 
       // add player controlled spaceship
       this.addChild(this._spaceship);
@@ -128,12 +110,9 @@ module scenes {
         config.Game.CURRENT_BULLET_TICKER + 10 ==
         createjs.Ticker.getTicks()
       ) {
-        if (config.Game.SCORE_BOARD.Bullets > 0) {
-          config.Game.SCORE_BOARD.Bullets -= 1;
-          let bullet = this._spaceship.shoot(objects.Vector2.up());
-          this.addChild(bullet);
-          this._bullets.push(bullet);
-        }
+        let bullet = this._spaceship.shoot(objects.Vector2.up());
+        this.addChild(bullet);
+        this._bullets.push(bullet);
         config.Game.CURRENT_BULLET_TICKER = createjs.Ticker.getTicks();
       }
     }

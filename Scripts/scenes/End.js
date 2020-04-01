@@ -39,6 +39,7 @@ var scenes;
             this._scoreLabel = new objects.Label("Current Score: " + config.Game.SCORE, "24px", "Consolas", "#FFFFFF", 320, 350, true);
             // buttons
             this._restartButton = new objects.Button(config.Game.ASSETS.getResult("playAgainButton"), 140, 560, true);
+            this._playEndlessButton = new objects.Button(config.Game.ASSETS.getResult("playEndlessButton"), 320, 560, true);
             this._exitButton = new objects.Button(config.Game.ASSETS.getResult("exitToMenuButton"), 500, 560, true);
             this.Main();
         };
@@ -58,12 +59,19 @@ var scenes;
             this.addChild(this._scoreBoard.HighScoreLabel);
             // add buttons to scene
             this.addChild(this._restartButton);
+            this.addChild(this._playEndlessButton);
             this.addChild(this._exitButton);
             this._restartButton.on("click", function () {
                 config.Game.LIVES = 5;
                 config.Game.BULLETS = 99;
                 config.Game.SCORE = 0;
                 config.Game.SCENE = scenes.State.PLAY;
+            });
+            this._playEndlessButton.on("click", function () {
+                config.Game.LIVES = 5;
+                config.Game.BULLETS = 99;
+                config.Game.SCORE = 0;
+                config.Game.SCENE = scenes.State.ENDLESS;
             });
             this._exitButton.on("click", function () {
                 config.Game.SCENE = scenes.State.START;
