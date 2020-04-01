@@ -13,6 +13,8 @@ module scenes {
 
     private _scoreBoard: managers.ScoreBoard;
 
+    private _backgroundSound: createjs.AbstractSoundInstance;
+
     // PUBLIC PROPERTIES
 
     // CONSTRUCTOR
@@ -27,6 +29,7 @@ module scenes {
 
     //initialize and instatiate
     public Start(): void {
+      // initilize the game objects
       this._universe = new objects.Universe();
       this._spaceship = new objects.Spaceship();
       this._planet = new objects.Icon(enums.GameObjectTypes.PLANET);
@@ -52,6 +55,10 @@ module scenes {
       // initial the score board
       this._scoreBoard = new managers.ScoreBoard();
       config.Game.SCORE_BOARD = this._scoreBoard;
+
+      this._backgroundSound = createjs.Sound.play("backgroundSound");
+      this._backgroundSound.loop = -1;
+      this._backgroundSound.volume = 0.1;
 
       this.Main();
     }
@@ -110,6 +117,11 @@ module scenes {
       });
     }
 
+    public Clean(): void {
+      this._backgroundSound.stop();
+      this.removeAllChildren();
+    }
+
     public fireBullet(): void {
       if (
         config.Game.CURRENT_BULLET_TICKER + 10 ==
@@ -134,6 +146,8 @@ module scenes {
         managers.Collision.squaredRadiusCheck(this._spaceship, monster);
         // check if the monster escaped or not
         if (monster.escape) {
+          let lostLiveSound = createjs.Sound.play("lostLivesSound");
+          lostLiveSound.volume = 0.25;
           // if monster escaped, detect lives
           config.Game.SCORE_BOARD.Lives -= 1;
           //remove from scene and then create an new one

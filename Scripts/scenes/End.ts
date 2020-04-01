@@ -127,5 +127,7 @@ module scenes {
         config.Game.SCENE = scenes.State.START;
       });
     }
+
+    public Clean(): void {}
   }
 }

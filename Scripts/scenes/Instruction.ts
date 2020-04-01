@@ -43,9 +43,9 @@ module scenes {
         "2. Some Monsters need 2 Bullet to destory\n\n" +
         "3. Spaceship hits Monster, Live – 1\n\n" +
         "4. Monster escaped, Live – 1\n\n" +
-        "5. Spaceship interacts live icon, Live + 1\n\n" +
-        "6. Spaceship interacts star icon, Score + 20\n\n" +
-        "7. Spaceship interacts Planet, Bullet + 50\n\n" +
+        "5. Spaceship grab heart, Live + 1\n\n" +
+        "6. Spaceship grab Star, Score + 50\n\n" +
+        "7. Spaceship grab Planet, Bullet + 50\n\n" +
         "8. Live = 0 then Game Over\n\n";
       this._instructionLabel = new objects.Label(
         instruction,
@@ -96,5 +96,7 @@ module scenes {
         config.Game.SCENE = scenes.State.START;
       });
     }
+
+    public Clean(): void {}
   }
 }

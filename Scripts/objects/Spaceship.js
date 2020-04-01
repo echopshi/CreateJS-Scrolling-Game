@@ -49,6 +49,8 @@ var objects;
         };
         Spaceship.prototype.Reset = function () { };
         Spaceship.prototype.shoot = function (aim) {
+            var bulletFireSound = createjs.Sound.play("bulletFireSound");
+            bulletFireSound.volume = 0.2;
             return new objects.Bullet(this.position.x, this.position.y - 40, aim);
         };
         return Spaceship;

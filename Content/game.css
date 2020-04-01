@@ -1,17 +1,15 @@
-body
-{
-    background-color: lightgray;
+body {
+  background-color: lightgray;
 }
 
-#canvas
-{
-    background-color: white;
-    border: 1px dotted black;
-    border-radius: 10px;
+#canvas {
+  background-color: white;
+  border: 1px dotted black;
+  border-radius: 10px;
+  margin-top: 50px;
 }
 
-#mainContent
-{
-    width: 640px;
-    margin: 0 auto;
+#mainContent {
+  width: 640px;
+  margin: 0 auto;
 }

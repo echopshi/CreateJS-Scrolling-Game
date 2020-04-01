@@ -157,5 +157,7 @@ module scenes {
         config.Game.SCENE = scenes.State.END;
       });
     }
+
+    public Clean(): void {}
   }
 }

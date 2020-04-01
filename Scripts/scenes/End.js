@@ -69,6 +69,7 @@ var scenes;
                 config.Game.SCENE = scenes.State.START;
             });
         };
+        End.prototype.Clean = function () { };
         return End;
     }(objects.Scene));
     scenes.End = End;

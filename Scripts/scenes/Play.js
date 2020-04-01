@@ -27,6 +27,7 @@ var scenes;
         // PUBLIC METHODS
         //initialize and instatiate
         Play.prototype.Start = function () {
+            // initilize the game objects
             this._universe = new objects.Universe();
             this._spaceship = new objects.Spaceship();
             this._planet = new objects.Icon(enums.GameObjectTypes.PLANET);
@@ -47,6 +48,9 @@ var scenes;
             // initial the score board
             this._scoreBoard = new managers.ScoreBoard();
             config.Game.SCORE_BOARD = this._scoreBoard;
+            this._backgroundSound = createjs.Sound.play("backgroundSound");
+            this._backgroundSound.loop = -1;
+            this._backgroundSound.volume = 0.1;
             this.Main();
         };
         Play.prototype.Update = function () {
@@ -91,6 +95,10 @@ var scenes;
                 _this.addChild(monster);
             });
         };
+        Play.prototype.Clean = function () {
+            this._backgroundSound.stop();
+            this.removeAllChildren();
+        };
         Play.prototype.fireBullet = function () {
             if (config.Game.CURRENT_BULLET_TICKER + 10 ==
                 createjs.Ticker.getTicks()) {
@@ -112,6 +120,8 @@ var scenes;
                 managers.Collision.squaredRadiusCheck(this._spaceship, monster);
                 // check if the monster escaped or not
                 if (monster.escape) {
+                    var lostLiveSound = createjs.Sound.play("lostLivesSound");
+                    lostLiveSound.volume = 0.25;
                     // if monster escaped, detect lives
                     config.Game.SCORE_BOARD.Lives -= 1;
                     //remove from scene and then create an new one

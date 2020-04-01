@@ -35,7 +35,15 @@ let Game = (function() {
     { id: "monsterD", src: "./Assets/images/monstorD.png" },
     { id: "planet", src: "./Assets/images/planet.png" },
     { id: "liveIcon", src: "./Assets/images/liveIcon.png" },
-    { id: "starIcon", src: "./Assets/images/starIcon.png" }
+    { id: "starIcon", src: "./Assets/images/starIcon.png" },
+    // sounds
+    { id: "backgroundSound", src: "./Assets/audio/background.mp3" },
+    { id: "bulletFireSound", src: "./Assets/audio/bulletFire.wav" },
+    { id: "gainPointsSound", src: "./Assets/audio/gainPoints.mp3" },
+    { id: "gameOverSound", src: "./Assets/audio/gameOver.mp3" },
+    { id: "grabItemSound", src: "./Assets/audio/grabItems.mp3" },
+    { id: "lostLivesSound", src: "./Assets/audio/lostLives.wav" },
+    { id: "yaySound", src: "./Assets/audio/yay.ogg" }
   ];
 
   function Preload(): void {
@@ -85,6 +93,7 @@ let Game = (function() {
 
     // clean up
     if (currentSceneState != scenes.State.NO_SCENE) {
+      currentScene.Clean();
       currentScene.removeAllChildren();
       stage.removeAllChildren();
     }
