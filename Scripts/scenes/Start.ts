@@ -162,7 +162,11 @@ module scenes {
       });
 
       this._exitButton.on("click", () => {
-        config.Game.SCENE = scenes.State.END;
+        config.Game.LIVES = 5;
+        config.Game.BULLETS = 99;
+        config.Game.SCORE = 0;
+        config.Game.HIGH_SCORE = 0;
+        config.Game.SCENE = scenes.State.EXIT;
       });
     }
 

@@ -110,6 +110,10 @@ var Game = (function () {
                 console.log("switch to End Scene");
                 currentScene = new scenes.End();
                 break;
+            case scenes.State.EXIT:
+                console.log("switch to Exit Scene");
+                currentScene = new scenes.Exit();
+                break;
         }
         currentSceneState = config.Game.SCENE;
         stage.addChild(currentScene);
